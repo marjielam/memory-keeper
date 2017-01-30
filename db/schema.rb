@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129175143) do
+ActiveRecord::Schema.define(version: 20170130193429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "day_id",      null: false
+    t.integer  "question_id", null: false
+    t.text     "body"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["day_id", "question_id"], name: "index_answers_on_day_id_and_question_id", unique: true, using: :btree
+    t.index ["day_id"], name: "index_answers_on_day_id", using: :btree
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.date     "date",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date", "user_id"], name: "index_days_on_date_and_user_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_days_on_user_id", using: :btree
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.date   "date", null: false
+    t.string "body", null: false
+    t.index ["date"], name: "index_questions_on_date", unique: true, using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

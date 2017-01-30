@@ -4,4 +4,5 @@ class Answer < ApplicationRecord
 
   validates :day, presence: true
   validates :question, presence: true
+  validates :day, uniqueness: { scope: :question }
 end
