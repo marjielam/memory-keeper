@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+![Build Status](https://codeship.com/projects/80975840-c931-0134-9c9f-3a0fd8dae151/status?branch=master)
+![Code Climate](https://codeclimate.com/github/marjielam/memory-keeper.png)
+![Coverage Status](https://coveralls.io/repos/marjielam/memory-keeper/badge.png)
