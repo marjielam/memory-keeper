@@ -1,14 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>MemoryKeeper</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <div class="top-bar">
+      <div class="top-bar-title">
+      <strong><a href="/">Memory Keeper</a></strong>
+      </div>
+      <div id="responsive-menu">
+        <div class="top-bar-left">
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu">
+            <li>
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li>
+                  <a href="#">ONE</a>
+                  <ul class="menu vertical">
+                    <li><a href="#">One</a></li>
+                    <li><a href="#">Two</a></li>
+                    <li><a href="#">Three</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <% if user_signed_in? %>
+              <li><%= link_to "LOG OUT", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "ACCOUNT SETTINGS", edit_user_registration_path, method: :get %></li>
+            <% else %>
+              <li><a href="/users/sign_up">SIGN UP</a></li>
+              <li><a href="/users/sign_in">LOG IN</a></li>
+            <% end %>
+            <li><input type="search" placeholder="Search"></li>
+            <li><button type="button" class="button">Search</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <% if !flash.empty? %>
+      <div class="flash">
+        <% flash.each do |key, value| %>
+          <%= value %>
+        <% end %>
+      </div>
+    <% end %>
+
     <%= yield %>
+
   </body>
 </html>

@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+@import url("https://fonts.googleapis.com/css?family=Homemade+Apple");
+@import url("https://fonts.googleapis.com/css?family=Julius+Sans+One");
+@import url("https://fonts.googleapis.com/css?family=Sacramento");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+body {
+  font-family: Open Sans, sans-serif;
+}
+
+.daily-question {
+  background-color: #69D2E7;
+  padding: 20px;
+}
+
+.flash {
+  background-color: #F38630;
+  color: white;
+  padding: .5em;
+}
+
+.page-body {
+  margin: 1.5em;
+}

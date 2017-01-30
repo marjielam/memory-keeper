@@ -1,5 +1,7 @@
 source 'https://rubygems.org/'
 
+gem 'devise'
+gem 'foundation-rails'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
