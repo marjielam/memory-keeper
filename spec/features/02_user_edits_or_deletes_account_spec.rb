@@ -27,6 +27,7 @@ feature 'user can edit or delete account' do
     click_on 'ACCOUNT SETTINGS'
     click_on 'Cancel my account'
 
-    expect(page).to have_content 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+    expect(page).to have_content 'Bye! Your account has been successfully
+      cancelled. We hope to see you again soon.'
   end
 end

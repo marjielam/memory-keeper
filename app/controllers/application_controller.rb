@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def authenticate_user!(options={})
+  def authenticate_user!(options = {})
     if user_signed_in?
       super(options)
     else
