@@ -135,7 +135,27 @@ class Question extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  getMonthDisplay(int) {
+
+  }
+
   render() {
+    let monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    let date = new Date(this.props.dayDate);
+    let displayDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
     let answer;
     if (this.state.answerStatus == "new") {
       answer =
@@ -160,7 +180,7 @@ class Question extends Component {
     }
     return (
       <div className="daily-question">
-        <h2>January 29</h2>
+        <h2>{displayDate}</h2>
         <p className="question-body">{this.props.questionBody}</p>
         {answer}
       </div>
