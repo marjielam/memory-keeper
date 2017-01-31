@@ -1,6 +1,7 @@
 source 'https://rubygems.org/'
 
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'foundation-rails'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'

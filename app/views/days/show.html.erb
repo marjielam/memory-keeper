@@ -1,3 +1,5 @@
-<div id="day-show">
-
+<div id="day-show" data-id="<%= @day.id %>">
+  <input type="hidden" id="question-id" value="<%= @question.id %>" />
+  <input type="hidden" id="question-body" value="<%= @question.body %>" />
+  <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
 </div>
