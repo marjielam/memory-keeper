@@ -12,6 +12,7 @@ body {
 .daily-question {
   background-color: #69D2E7;
   padding: 20px;
+  text-align: center;
 }
 
 .flash {
@@ -22,4 +23,27 @@ body {
 
 .page-body {
   margin: 1.5em;
+}
+
+.save-answer {
+  background-color: #F38630;
+  border-radius: .5em;
+  border-bottom: solid #DB792B .3em;
+  padding: .5em;
+  margin: .5em;
+  color: white;
+}
+
+.save-answer:hover {
+  background-color: #DB792B;
+  border-bottom: solid #CB7028 .3em;
+}
+
+.fa-pencil {
+  color: Black;
+  padding: .5em;
+}
+
+.fa-pencil:hover {
+  color: #F38630;
 }

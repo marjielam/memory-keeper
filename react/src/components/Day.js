@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Question from './Question';
 
 class Day extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
 
     };
@@ -10,7 +11,13 @@ class Day extends Component {
 
   render() {
     return (
-      <h1>This is a day in React!</h1>
+      <div>
+        <Question
+        dayId={this.props.dayId}
+        questionId={this.props.questionId}
+        questionBody={this.props.questionBody}
+        />
+      </div>
     );
   }
 }
