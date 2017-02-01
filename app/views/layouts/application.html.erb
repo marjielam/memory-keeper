@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Memory Keeper" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -21,6 +21,9 @@
         </div>
         <div class="top-bar-right">
           <ul class="menu">
+            <% if current_user %>
+              <li>Hello, <%= current_user.email %></li>
+            <% end %>
             <li>
               <ul class="dropdown menu" data-dropdown-menu>
                 <li>
@@ -33,8 +36,8 @@
                 </li>
               </ul>
             </li>
-            <% if Day.find_by(date: Date.today) %>
-              <li><%= link_to "TODAY", day_path(Day.find_by(date: Date.today)) %></li>
+            <% if Day.find_by(date: Date.today, user: current_user) %>
+              <li><%= link_to "TODAY", day_path(Day.find_by(date: Date.today, user: current_user)) %></li>
             <% else %>
               <li> <%= link_to "TODAY", days_path(day: { date: Date.today }), method: :post %> </li>
             <% end %>

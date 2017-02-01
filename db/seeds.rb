@@ -29,7 +29,7 @@ Question.create(date: Date.parse("2000-01-27"), body: "How much did you spend at
 Question.create(date: Date.parse("2000-01-28"), body: "Tomorrow I will _________________________.")
 Question.create(date: Date.parse("2000-01-29"), body: "What was your last major purchase?")
 Question.create(date: Date.parse("2000-01-30"), body: "My house is a home because _______________________.")
-Question.create(date: Date.parse("2000-01-31"), body: "Who is the last person to tell you they loved you?")
+Question.create(date: Date.parse("2000-01-31"), body: "Who was the last person to tell you they loved you?")
 
 # February
 Question.create(date: Date.parse("2000-02-01"), body: "What is your favorite piece of art you own?")
