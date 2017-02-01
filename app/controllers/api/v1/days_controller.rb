@@ -13,7 +13,8 @@ class Api::V1::DaysController < ApplicationController
     @current_user = User.find(params[:user_id])
     @all_questions = Question.all
     @all_questions.each do |question|
-      if question.date.day == @day.date.day && question.date.month == @day.date.month
+      if question.date.day == @day.date.day &&
+          question.date.month == @day.date.month
         @question = question
       end
     end
