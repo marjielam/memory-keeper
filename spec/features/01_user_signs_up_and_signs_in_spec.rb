@@ -22,11 +22,11 @@ feature 'user can sign up and sign in' do
   end
 
   scenario 'user signs in' do
-    FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user)
 
     visit '/'
-    fill_in 'Email', with: 'email1@factory.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
     click_on 'Log in'
 
     expect(page).to have_content 'Signed in successfully.'
@@ -40,11 +40,11 @@ feature 'user can sign up and sign in' do
   end
 
   scenario 'user signs out' do
-    FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user)
 
     visit '/'
-    fill_in 'Email', with: 'email2@factory.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
     click_on 'Log in'
     click_on 'LOG OUT'
 
