@@ -5,7 +5,7 @@ feature 'user can edit or delete account' do
 
   scenario 'user can edit account' do
     visit '/'
-    fill_in 'Email', with: 'marjielam@gmail.com'
+    fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
     click_on 'Log in'
     click_on 'ACCOUNT SETTINGS'
@@ -21,7 +21,7 @@ feature 'user can edit or delete account' do
 
   scenario 'user can delete account' do
     visit '/'
-    fill_in 'Email', with: 'marjielam@gmail.com'
+    fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
     click_on 'Log in'
     click_on 'ACCOUNT SETTINGS'

@@ -12,8 +12,12 @@ RSpec.describe Api::V1::DaysController, type: :controller do
   let!(:answer4) { FactoryGirl.create(:answer, day: day14, question: question) }
 
   let!(:user2) { FactoryGirl.create(:user) }
-  let!(:day14_other_user) { FactoryGirl.create(:day, date: Date.parse("2016-01-02", user: user2)) }
-  let!(:answer5) { FactoryGirl.create(:answer, day: day14_other_user, question: question) }
+  let!(:day14_other_user) do
+    FactoryGirl.create(:day, date: Date.parse("2016-01-02", user: user2))
+  end
+  let!(:answer5) do
+    FactoryGirl.create(:answer, day: day14_other_user, question: question)
+  end
 
   describe "GET#show" do
     it "should return the day with a particular id" do
@@ -27,7 +31,8 @@ RSpec.describe Api::V1::DaysController, type: :controller do
   end
 
   xdescribe "GET#previous_answers" do
-    it "should get all previous answers to a question for a given day for a given user excluding the present day" do
+    it "should get all previous answers to a question for a given day for a
+      given user excluding the present day" do
       get :show, user_id: day.user.id, day_id: day.id
 
     end
