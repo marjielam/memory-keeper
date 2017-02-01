@@ -4,7 +4,7 @@ feature 'user can sign up and sign in' do
   scenario 'user signs up for account' do
     visit '/'
     click_on 'Sign up'
-    fill_in 'Email', with: 'marjielam@gmail.com'
+    fill_in 'Email', with: 'marjie123@gmail.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_on 'Sign up'
@@ -25,7 +25,7 @@ feature 'user can sign up and sign in' do
     FactoryGirl.create(:user)
 
     visit '/'
-    fill_in 'Email', with: 'marjielam@gmail.com'
+    fill_in 'Email', with: 'email1@factory.com'
     fill_in 'Password', with: 'password'
     click_on 'Log in'
 
@@ -43,7 +43,7 @@ feature 'user can sign up and sign in' do
     FactoryGirl.create(:user)
 
     visit '/'
-    fill_in 'Email', with: 'marjielam@gmail.com'
+    fill_in 'Email', with: 'email2@factory.com'
     fill_in 'Password', with: 'password'
     click_on 'Log in'
     click_on 'LOG OUT'

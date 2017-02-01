@@ -23,6 +23,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda'
+  gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
 end
 
