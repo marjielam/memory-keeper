@@ -44,6 +44,7 @@ class Day extends Component {
         dayDate={this.state.day.date}
         questionId={this.props.questionId}
         questionBody={this.props.questionBody}
+        currentUserId={this.props.currentUserId}
         />
       </div>
     );

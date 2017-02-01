@@ -39,11 +39,14 @@ body {
   border-bottom: solid #CB7028 .3em;
 }
 
-.fa-pencil {
-  color: Black;
+.fa {
   padding: .5em;
 }
 
 .fa-pencil:hover {
   color: #F38630;
+}
+
+li {
+  list-style: none;
 }

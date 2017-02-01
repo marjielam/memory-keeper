@@ -1,23 +1,29 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
+import PreviousAnswer from './PreviousAnswer';
 
 class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
       answerStatus: "new",
-      answer: ""
+      answer: "",
+      previousAnswers: [],
+      showPreviousAnswers: false
     };
     this.getAnswer = this.getAnswer.bind(this);
+    this.getPreviousAnswers = this.getPreviousAnswers.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.saveNewAnswer = this.saveNewAnswer.bind(this);
     this.openEditForm = this.openEditForm.bind(this);
     this.editAnswer = this.editAnswer.bind(this);
+    this.getDisplayDate = this.getDisplayDate.bind(this);
   }
 
   componentDidMount() {
     this.getAnswer();
+    this.getPreviousAnswers();
   }
 
   getAnswer() {
@@ -135,11 +141,26 @@ class Question extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  getMonthDisplay(int) {
-
+  getPreviousAnswers() {
+    fetch(`/api/v1/users/${this.props.currentUserId}/days/${this.props.dayId}/previous_answers`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status}, (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let answers = body;
+      this.setState({ previousAnswers: answers });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  render() {
+  getDisplayDate(dateString, method) {
     let monthNames = [
       "January",
       "February",
@@ -154,8 +175,26 @@ class Question extends Component {
       "November",
       "December"
     ];
-    let date = new Date(this.props.dayDate);
-    let displayDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    let dateRaw = new Date(dateString);
+    let dateCorrected = new Date(dateRaw.getTime() - dateRaw.getTimezoneOffset() * -60000);
+    let displayDate;
+    if (method == "full") {
+      displayDate =
+      `${monthNames[dateCorrected.getMonth()]} ${dateCorrected.getDate()}, ${dateCorrected.getFullYear()}`;
+    } else if (method == "year") {
+      displayDate = `${dateCorrected.getFullYear()}`;
+    }
+    return displayDate;
+  }
+
+  togglePreviousAnswers() {
+    let newState = !this.state.showPreviousAnswers;
+    this.setState({ showPreviousAnswers: newState });
+  }
+
+  render() {
+    let displayDate = this.getDisplayDate(this.props.dayDate, "full");
+
     let answer;
     if (this.state.answerStatus == "new") {
       answer =
@@ -178,11 +217,41 @@ class Question extends Component {
         <button className="save-answer" onClick={() => this.editAnswer()}>Save</button>
       </div>;
     }
+
+    let previousAnswerList = this.state.previousAnswers.map(answerData => {
+      let displayDate = this.getDisplayDate(answerData.day.date, "year");
+      return (
+        <PreviousAnswer
+        key={answerData.answer.id}
+        id={answerData.answer.id}
+        body={answerData.answer.body}
+        dayId={answerData.day.id}
+        displayDate={displayDate}
+        />
+      );
+    });
+
+    let showPreviousAnswers;
+    if (this.state.showPreviousAnswers) {
+      showPreviousAnswers =
+      <div>
+        <h3 onClick={() => this.togglePreviousAnswers()}><i className="fa fa-minus" aria-hidden="true"></i>Hide previous answers</h3>
+        <ul>{previousAnswerList}</ul>
+      </div>;
+    } else {
+      showPreviousAnswers =
+      <div>
+        <h3 onClick={() => this.togglePreviousAnswers()}><i className="fa fa-plus" aria-hidden="true"></i>Show previous answers</h3>
+      </div>;
+    }
+
     return (
       <div className="daily-question">
         <h2>{displayDate}</h2>
         <p className="question-body">{this.props.questionBody}</p>
         {answer}
+
+        {showPreviousAnswers}
       </div>
     );
   }
