@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import Moment from 'moment';
 
 class DayIndex extends Component {
   constructor() {
@@ -12,7 +14,9 @@ class DayIndex extends Component {
 
   render() {
     return (
-      <h1>This is a day index in React!</h1>
+      <div>
+
+      </div>
     );
   }
 }
