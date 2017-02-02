@@ -31,7 +31,7 @@ RSpec.describe Api::V1::DaysController, type: :controller do
 
   describe "GET#index" do
     it "should return a list of days with data for a given user" do
-      get :index, user_id: day.user.id
+      get :index, user_id: user.id
       json = JSON.parse(response.body)
 
       expect(json.length).to eq 5
