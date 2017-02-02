@@ -76,6 +76,7 @@ class DayIndex extends Component {
     });
     return (
       <div>
+        <h2>Select a day</h2>
         {dayTiles}
       </div>
     );
