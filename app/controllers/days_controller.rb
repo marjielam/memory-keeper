@@ -7,10 +7,7 @@ class DaysController < ApplicationController
 
   def show
     @day = Day.find_by(user: current_user, id: params[:id])
-    @day_month = @day.date.month
-    @day_day = @day.date.day
-    @question_date = Date.parse("2000-#{@day_month}-#{@day_day}")
-    @question = Question.find_by(date: @question_date)
+    @question = @day.get_question
   end
 
   def create
