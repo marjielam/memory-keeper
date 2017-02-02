@@ -8,7 +8,7 @@ class Api::V1::DaysController < ApplicationController
     @days = @user.days.order(date: :desc)
     @day_info = []
     @days.each do |day|
-      @day_info << {day: day, question: day.get_question}
+      @day_info << { day: day, question: day.get_question }
     end
     render json: @day_info
   end
