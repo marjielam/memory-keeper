@@ -30,8 +30,11 @@ $(function() {
       document.getElementById('day-show')
     );
   } else if (document.getElementById('day-index')) {
+    let currentUserId = parseInt(document.getElementById('current-user-id').value);
     ReactDOM.render(
-      <DayIndex />,
+      <DayIndex
+      currentUserId={currentUserId}
+      />,
       document.getElementById('day-index')
     );
   }

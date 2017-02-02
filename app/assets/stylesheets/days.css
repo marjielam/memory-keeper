@@ -54,3 +54,28 @@ li {
 .datepicker-days {
   height: 100px;
 }
+
+.day-tile {
+  background-color: #B2DEE7;
+  padding: 1.1em;
+  border-radius: 1em;
+  border: solid white .3em;
+  height: 8em;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-family: Julius Sans One;
+  font-weight: 700;
+}
+
+.day-tile span {
+  height: 5em;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.day-tile:hover {
+  background-color: #34495e;
+  color: white;
+  font-size: 1em;
+}

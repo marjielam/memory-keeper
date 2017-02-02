@@ -24,18 +24,6 @@
             <% if current_user %>
               <li>Hello, <%= current_user.email %></li>
             <% end %>
-            <li>
-              <ul class="dropdown menu" data-dropdown-menu>
-                <li>
-                  <a href="#">ONE</a>
-                  <ul class="menu vertical">
-                    <li><a href="#">One</a></li>
-                    <li><a href="#">Two</a></li>
-                    <li><a href="#">Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
             <% if Day.find_by(date: Date.today, user: current_user) %>
               <li><%= link_to "TODAY", day_path(Day.find_by(date: Date.today, user: current_user)) %></li>
             <% else %>

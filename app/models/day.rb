@@ -6,4 +6,9 @@ class Day < ApplicationRecord
   validates :date, presence: true
   validates :user, presence: true
   validates :date, uniqueness: { scope: :user }
+
+  def get_question
+    question_date = Date.parse("2000-#{self.date.month}-#{self.date.day}")
+    @question = Question.find_by(date: question_date)
+  end
 end

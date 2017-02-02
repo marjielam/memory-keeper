@@ -13,7 +13,6 @@ class Calendar extends Component {
   }
 
   handleDateChange(date) {
-    debugger;
     this.setState({ selectedDate: date });
   }
 

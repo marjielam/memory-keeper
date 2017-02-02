@@ -46,8 +46,6 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
-    bootstrap-datepicker-rails (1.6.4.1)
-      railties (>= 3.0)
     builder (3.2.3)
     capybara (2.12.0)
       addressable
@@ -234,7 +232,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-datepicker-rails
   capybara
   coveralls
   devise
