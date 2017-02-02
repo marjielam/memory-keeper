@@ -29,11 +29,11 @@ RSpec.describe Api::V1::DaysController, type: :controller do
     FactoryGirl.create(:answer, day: day14_other_user, question: question)
   end
 
-  describe "GET#index" do
+  xdescribe "GET#index" do
     it "should return a list of days with data for a given user" do
       get :index, user_id: user.id
       json = JSON.parse(response.body)
-      
+
       expect(json.length).to eq 5
       expect(json[0]["day"]["id"]).to eq other_day.id
       expect(json[0]["question"]["id"]).to eq other_day.get_question.id
