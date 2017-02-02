@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :days, only: [:show] do
+      resources :days, only: [:show, :create] do
         resources :answers, only: [:index, :create, :update]
       end
       resources :users, only: [:show] do

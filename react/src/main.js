@@ -8,9 +8,12 @@ import DayIndex from './components/DayIndex';
 import Calendar from './components/Calendar';
 
 $(function() {
+  let currentUserId = parseInt(document.getElementById('current-user-id').value);
   if (document.getElementById('calendar')) {
     ReactDOM.render(
-      <Calendar />,
+      <Calendar
+      currentUserId={currentUserId}
+      />,
       document.getElementById('calendar')
     );
   }
@@ -18,7 +21,6 @@ $(function() {
     let dayId = parseInt(document.getElementById('day-show').dataset.id);
     let questionId = parseInt(document.getElementById('question-id').value);
     let questionBody = document.getElementById('question-body').value;
-    let currentUserId = parseInt(document.getElementById('current-user-id').value);
     ReactDOM.render(
       <Day
       key={dayId}
@@ -30,7 +32,6 @@ $(function() {
       document.getElementById('day-show')
     );
   } else if (document.getElementById('day-index')) {
-    let currentUserId = parseInt(document.getElementById('current-user-id').value);
     ReactDOM.render(
       <DayIndex
       currentUserId={currentUserId}
