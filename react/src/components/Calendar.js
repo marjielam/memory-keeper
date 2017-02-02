@@ -48,7 +48,7 @@ class Calendar extends Component {
     dateArray.forEach((date) => {
       let loopSelectedDate = selectedDate;
       let currentDate = new Date(date.day.date);
-      if (currentDate.getDay() == loopSelectedDate.getDay() &&
+      if (currentDate.getDate() == loopSelectedDate.getDate() &&
         currentDate.getMonth() == loopSelectedDate.getMonth() &&
         currentDate.getYear() == loopSelectedDate.getYear()) {
         matchingDate = date;
