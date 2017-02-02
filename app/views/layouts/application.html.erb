@@ -24,23 +24,12 @@
             <% if current_user %>
               <li>Hello, <%= current_user.email %></li>
             <% end %>
-            <li>
-              <ul class="dropdown menu" data-dropdown-menu>
-                <li>
-                  <a href="#">ONE</a>
-                  <ul class="menu vertical">
-                    <li><a href="#">One</a></li>
-                    <li><a href="#">Two</a></li>
-                    <li><a href="#">Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
             <% if Day.find_by(date: Date.today, user: current_user) %>
               <li><%= link_to "TODAY", day_path(Day.find_by(date: Date.today, user: current_user)) %></li>
             <% else %>
               <li> <%= link_to "TODAY", days_path(day: { date: Date.today }), method: :post %> </li>
             <% end %>
+            <li><div id="calendar" /></li>
             <% if user_signed_in? %>
               <li><%= link_to "LOG OUT", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "ACCOUNT SETTINGS", edit_user_registration_path, method: :get %></li>
@@ -48,8 +37,6 @@
               <li><a href="/users/sign_up">SIGN UP</a></li>
               <li><a href="/users/sign_in">LOG IN</a></li>
             <% end %>
-            <li><input type="search" placeholder="Search"></li>
-            <li><button type="button" class="button">Search</button></li>
           </ul>
         </div>
       </div>

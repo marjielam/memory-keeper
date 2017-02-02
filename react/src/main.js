@@ -5,8 +5,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Day from './components/Day';
 import DayIndex from './components/DayIndex';
+import Calendar from './components/Calendar';
 
 $(function() {
+  if (document.getElementById('calendar')) {
+    ReactDOM.render(
+      <Calendar />,
+      document.getElementById('calendar')
+    );
+  }
   if (document.getElementById('day-show')) {
     let dayId = parseInt(document.getElementById('day-show').dataset.id);
     let questionId = parseInt(document.getElementById('question-id').value);
@@ -23,8 +30,11 @@ $(function() {
       document.getElementById('day-show')
     );
   } else if (document.getElementById('day-index')) {
+    let currentUserId = parseInt(document.getElementById('current-user-id').value);
     ReactDOM.render(
-      <DayIndex />,
+      <DayIndex
+      currentUserId={currentUserId}
+      />,
       document.getElementById('day-index')
     );
   }

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :answers, only: [:index, :create, :update]
       end
       resources :users, only: [:show] do
-        resources :days, only: [:show] do
+        resources :days, only: [:index, :show] do
           get 'previous_answers'
         end
       end
