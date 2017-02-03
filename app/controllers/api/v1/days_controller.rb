@@ -15,7 +15,9 @@ class Api::V1::DaysController < ApplicationController
 
   def show
     @day = Day.find(params[:id])
-    render json: @day
+    @question = @day.get_question
+    @day_info = { day: @day, question: @question }
+    render json: @day_info
   end
 
   def create

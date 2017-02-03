@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
+import { Link } from 'react-router';
 import Moment from 'moment';
 import DayTile from './DayTile';
 
@@ -76,6 +76,7 @@ class DayIndex extends Component {
     });
     return (
       <div>
+        <Link to="days/47">Day 47</Link>
         <h2>Select a day</h2>
         {dayTiles}
       </div>

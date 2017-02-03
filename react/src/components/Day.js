@@ -8,7 +8,7 @@ class Day extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      day: ""
+      dayInfo: ""
     };
     this.getDay = this.getDay.bind(this);
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -31,25 +31,32 @@ class Day extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      let day = body;
-      this.setState({ day: day });
+      let dayInfo = body;
+      this.setState({ dayInfo: dayInfo });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
-    return (
-      <div>
-        <Question
-        dayId={this.props.dayId}
-        dayDate={this.state.day.date}
-        questionId={this.props.questionId}
-        questionBody={this.props.questionBody}
-        currentUserId={this.props.currentUserId}
-        />
-        <Fitbit />
-      </div>
-    );
+    if (this.state.dayInfo) {
+      return (
+        <div>
+          <Question
+          dayId={this.state.dayInfo.day.id}
+          dayDate={this.state.dayInfo.day.date}
+          questionId={this.state.dayInfo.question.id}
+          questionBody={this.state.dayInfo.question.body}
+          currentUserId={this.props.currentUserId}
+          />
+          <Fitbit />
+        </div>
+      );
+    }
+    else {
+      return (
+        <div />
+      );
+    }
   }
 }
 
