@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import Question from './Question';
+import Fitbit from './Fitbit';
 
 class Day extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class Day extends Component {
         questionBody={this.props.questionBody}
         currentUserId={this.props.currentUserId}
         />
+        <Fitbit />
       </div>
     );
   }
