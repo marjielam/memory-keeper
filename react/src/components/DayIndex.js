@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
 import Moment from 'moment';
 import DayTile from './DayTile';
 
@@ -69,6 +68,7 @@ class DayIndex extends Component {
       return (
         <DayTile
         key={day.day.id}
+        dayId={day.day.id}
         questionBody={day.question.body}
         displayDate={displayDate}
         />

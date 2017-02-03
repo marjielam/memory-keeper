@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 import React, { Component} from 'react';
+import { browserHistory } from 'react-router';
 
 class DayTile extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ class DayTile extends Component {
     this.setState({ hover: false });
   }
 
+  handleClick() {
+    browserHistory.push(`days/${this.props.dayId}`);
+  }
+
   render() {
     let displayDate = this.props.displayDate;
     let questionBody = this.props.questionBody;
@@ -30,7 +35,8 @@ class DayTile extends Component {
 
     return (
       <div className="day-tile small-12 medium-6 large-3 columns"
-        onMouseOver={() => this.hoverOn()} onMouseOut={() => this.hoverOff()}>
+        onMouseOver={() => this.hoverOn()} onMouseOut={() => this.hoverOff()}
+        onClick={() => this.handleClick()} >
         <span>{display}</span>
       </div>
     );

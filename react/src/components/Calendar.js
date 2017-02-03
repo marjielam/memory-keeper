@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import Moment from 'moment';
 
@@ -10,7 +11,6 @@ class Calendar extends Component {
     this.state = {
       selectedDate: null
     };
-
     this.handleDateChange = this.handleDateChange.bind(this);
   }
 
@@ -31,13 +31,12 @@ class Calendar extends Component {
       let selectedDate = date._d;
       let matchingDate = this.compareDates(dayInfo, selectedDate);
       if (matchingDate) {
-        // navigate to the show page for matchingDate.day.id
+        browserHistory.push(`/days/${matchingDate.day.id}`);
         this.setState({ selectedDate: date });
       }
       else {
         this.createDay(selectedDate);
         this.setState({ selectedDate: date });
-        //make sure this doesn't rerender the wrong page
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -58,7 +57,6 @@ class Calendar extends Component {
   }
 
   createDay(date) {
-    debugger;
     let dayData = {
       'day': {
         'date': date,
@@ -81,7 +79,8 @@ class Calendar extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      // redirect to show page for this day
+      let day = body;
+      browserHistory.push(`/days/${day.id}`);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
