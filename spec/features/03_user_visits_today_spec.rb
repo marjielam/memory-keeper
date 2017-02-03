@@ -10,7 +10,6 @@ feature 'user visits today page' do
     fill_in 'Password', with: 'password'
     click_on 'Log in'
 
-    click_on 'TODAY'
-    expect(page).to have_content "Show previous answers"
+    expect(page).to have_content "Select a day"
   end
 end

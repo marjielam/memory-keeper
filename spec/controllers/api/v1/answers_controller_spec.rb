@@ -19,11 +19,9 @@ RSpec.describe Api::V1::AnswersController, type: :controller do
 
   xdescribe "POST#create" do
     it "should create a new answer for a particular day and question" do
-      # post :create, params: { answer: { body: "friends and family",
-      # questionId: question.id } }, day_id: day.id
-      # answerData = {'answer': { 'body': "friends and family", 'questionId':
-      # question.id}}
-      post :create, day_id: day.id, answer: answerData.to_json, format: :json
+      # answerData =
+      # { 'answer': { 'body': "friend and family", 'questionId': question.id } }
+      post :create, params: { day_id: day.id, answer: answerData.to_json }
       # rest of the test goes here
     end
   end
