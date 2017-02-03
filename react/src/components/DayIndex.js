@@ -69,6 +69,7 @@ class DayIndex extends Component {
       return (
         <DayTile
         key={day.day.id}
+        dayId={day.day.id}
         questionBody={day.question.body}
         displayDate={displayDate}
         />
@@ -76,7 +77,6 @@ class DayIndex extends Component {
     });
     return (
       <div>
-        <Link to="days/47">Day 47</Link>
         <h2>Select a day</h2>
         {dayTiles}
       </div>
