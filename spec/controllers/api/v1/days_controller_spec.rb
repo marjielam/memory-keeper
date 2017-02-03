@@ -23,13 +23,13 @@ RSpec.describe Api::V1::DaysController, type: :controller do
 
   let!(:user2) { FactoryGirl.create(:user) }
   let!(:day14_other_user) do
-    FactoryGirl.create(:day, date: Date.parse("2014-01-02", user: user2))
+    FactoryGirl.create(:day, date: Date.parse("2014-01-02"), user: user2)
   end
   let!(:answer5) do
     FactoryGirl.create(:answer, day: day14_other_user, question: question)
   end
 
-  xdescribe "GET#index" do
+  describe "GET#index" do
     it "should return a list of days with data for a given user" do
       get :index, user_id: user.id
       json = JSON.parse(response.body)
@@ -60,10 +60,23 @@ RSpec.describe Api::V1::DaysController, type: :controller do
     end
   end
 
+  describe "POST#create" do
+    it "should create a day record given a user and date" do
+      day_data = { day: { date: Date.parse("2017-02-03"), userId: user.id } }
+
+      post :create, day_data.to_json, format: :json
+      json = JSON.parse(response.body)
+
+      expect(json["user_id"]).to eq user.id
+      expect(json["date"]).to eq "2017-02-03"
+    end
+  end
+
   xdescribe "GET#previous_answers" do
     it "should get all previous answers to a question for a given day for a
       given user excluding the present day" do
-      get :show, user_id: day.user.id, day_id: day.id
+      # visit api_v1_user_day_previous_answers_path(day.user.id, day.id)
+      # get :show, params: {day_id: day.id, user_id: day.user.id}
     end
   end
 end
