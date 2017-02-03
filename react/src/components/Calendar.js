@@ -11,7 +11,6 @@ class Calendar extends Component {
     this.state = {
       selectedDate: null
     };
-
     this.handleDateChange = this.handleDateChange.bind(this);
   }
 
@@ -32,7 +31,7 @@ class Calendar extends Component {
       let selectedDate = date._d;
       let matchingDate = this.compareDates(dayInfo, selectedDate);
       if (matchingDate) {
-        browserHistory.push(`days/${matchingDate.day.id}`);
+        browserHistory.push(`/days/${matchingDate.day.id}`);
         this.setState({ selectedDate: date });
       }
       else {
@@ -81,7 +80,7 @@ class Calendar extends Component {
     .then(response => response.json())
     .then(body => {
       let day = body;
-      browserHistory.push(`days/${day.id}`);
+      browserHistory.push(`/days/${day.id}`);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

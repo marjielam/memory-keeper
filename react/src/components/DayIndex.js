@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import Moment from 'moment';
 import DayTile from './DayTile';
 
