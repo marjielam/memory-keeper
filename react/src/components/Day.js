@@ -18,6 +18,10 @@ class Day extends Component {
     this.getDay();
   }
 
+  componentWillUpdate() {
+    this.getDay();
+  }
+
   getDay() {
     fetch(`/api/v1/days/${this.props.dayId}`)
     .then(response => {
