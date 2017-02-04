@@ -9,45 +9,47 @@ import DayIndex from './components/DayIndex';
 import Calendar from './components/Calendar';
 
 $(function() {
-  let currentUserId = parseInt(document.getElementById('current-user-id').value);
+  if (document.getElementById('current-user-id')) {
+    let currentUserId = parseInt(document.getElementById('current-user-id').value);
 
-  let DayIndexWrapper = React.createClass({
-    render: function () {
-      return (
-          <DayIndex
-          currentUserId={currentUserId}
-          />
+    let DayIndexWrapper = React.createClass({
+      render: function () {
+        return (
+            <DayIndex
+            currentUserId={currentUserId}
+            />
+        );
+      }
+    });
+
+    let DayWrapper = React.createClass({
+      render: function () {
+        return (
+            <Day
+            dayId={this.props.params.id}
+            currentUserId={currentUserId}
+            />
+        );
+      }
+    });
+
+    if (document.getElementById('calendar')) {
+      ReactDOM.render(
+        <Calendar
+        currentUserId={currentUserId}
+        />,
+        document.getElementById('calendar')
       );
     }
-  });
 
-  let DayWrapper = React.createClass({
-    render: function () {
-      return (
-          <Day
-          dayId={this.props.params.id}
-          currentUserId={currentUserId}
-          />
+    if (document.getElementById('app')) {
+      ReactDOM.render(
+        <Router history={browserHistory}>
+          <Route path="/" component={DayIndexWrapper} />
+          <Route path="days/:id" component={DayWrapper} />
+        </Router>,
+        document.getElementById('app')
       );
     }
-  });
-
-  if (document.getElementById('calendar')) {
-    ReactDOM.render(
-      <Calendar
-      currentUserId={currentUserId}
-      />,
-      document.getElementById('calendar')
-    );
-  }
-
-  if (document.getElementById('app')) {
-    ReactDOM.render(
-      <Router history={browserHistory}>
-        <Route path="/" component={DayIndexWrapper} />
-        <Route path="days/:id" component={DayWrapper} />
-      </Router>,
-      document.getElementById('app')
-    );
   }
 });
