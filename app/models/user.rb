@@ -15,4 +15,8 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def fitbit_user?
+    self.provider == "fitbit"
+  end
 end

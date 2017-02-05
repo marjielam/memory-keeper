@@ -41,7 +41,9 @@
 
             <% if user_signed_in? %>
               <li><%= link_to "LOG OUT", destroy_user_session_path, method: :delete %></li>
+              <% if !current_user.fitbit_user? %>
               <li><%= link_to "ACCOUNT SETTINGS", edit_user_registration_path, method: :get %></li>
+              <% end %>
             <% else %>
               <li><a href="/users/sign_up">SIGN UP</a></li>
               <li><a href="/users/auth/fitbit">SIGN IN WITH FITBIT</a></li>
