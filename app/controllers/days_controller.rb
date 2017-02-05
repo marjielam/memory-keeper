@@ -2,9 +2,11 @@ class DaysController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    # placeholder
   end
 
   def show
+    # placeholder
   end
 
   def create

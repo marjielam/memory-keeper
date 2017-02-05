@@ -1,6 +1,7 @@
 source 'https://rubygems.org/'
 
 gem 'devise'
+gem 'figaro'
 gem 'fitgem_oauth2', '~>1.0.5'
 gem 'font-awesome-rails'
 gem 'foundation-rails'
