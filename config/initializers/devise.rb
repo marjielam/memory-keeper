@@ -301,4 +301,5 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  config.omniauth :fitbit, '22844Y', '0135f8440fcf653c40605c1a1a812586', scope: 'profile activity sleep heartrate location nutrition settings social weight'
 end

@@ -52,7 +52,7 @@
  font-size: 2em;
 }
 
-.top-bar, .top-bar ul, .top-bar a {
+.top-bar, .top-bar ul, .top-bar a, .has-tip {
   background-color: white;
   color: black;
   font-family: Open Sans;
@@ -66,9 +66,6 @@ h2 {
 h3 {
   font-size: 1em;
 }
-
-$column-gutter: 5px;
-
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
 //
 // @include motion-ui-transitions;

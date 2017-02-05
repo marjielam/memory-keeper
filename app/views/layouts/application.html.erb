@@ -22,11 +22,15 @@
         <div class="top-bar-right">
           <ul class="menu">
             <% if current_user %>
-              <li>Hello, <%= current_user.email %></li>
-              <% if Day.find_by(date: Date.today, user: current_user) %>
-              <li><%= link_to "TODAY", day_path(Day.find_by(date: Date.today, user: current_user)) %></li>
+              <% if current_user.name %>
+                <li>Hello, <%= current_user.name %></li>
               <% else %>
-              <li> <%= link_to "TODAY", days_path(day: { date: Date.today }), method: :post %> </li>
+                <li>Hello, <%= current_user.email %></li>
+              <% end %>
+              <% if Day.find_by(date: Date.today, user: current_user) %>
+                <li><%= link_to "TODAY", day_path(Day.find_by(date: Date.today, user: current_user)), class: "today-button" %></li>
+              <% else %>
+                <li> <%= link_to "TODAY", days_path(day: { date: Date.today }), method: :post, class: "today-button" %> </li>
               <% end %>
               <li>
                 <div id="calendar">
@@ -40,6 +44,7 @@
               <li><%= link_to "ACCOUNT SETTINGS", edit_user_registration_path, method: :get %></li>
             <% else %>
               <li><a href="/users/sign_up">SIGN UP</a></li>
+              <li><a href="/users/auth/fitbit">SIGN IN WITH FITBIT</a></li>
               <li><a href="/users/sign_in">LOG IN</a></li>
             <% end %>
           </ul>
