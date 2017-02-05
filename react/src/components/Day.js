@@ -8,7 +8,8 @@ class Day extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dayInfo: ""
+      dayInfo: "",
+      dayId: this.props.dayId
     };
     this.getDay = this.getDay.bind(this);
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -18,8 +19,11 @@ class Day extends Component {
     this.getDay();
   }
 
-  componentWillUpdate() {
-    this.getDay();
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.dayInfo == "" ||
+      this.state.dayInfo.day.id != nextProps.dayId) {
+      this.getDay();
+    }
   }
 
   getDay() {

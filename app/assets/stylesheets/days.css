@@ -9,6 +9,12 @@ body {
   font-family: Open Sans, sans-serif;
 }
 
+.today-button {
+  border: solid black .1em;
+  border-radius: .5em;
+  margin: 0px .5em;
+}
+
 .daily-question {
   background-color: #B2DEE7;
   padding: 20px;

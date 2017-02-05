@@ -1,9 +1,12 @@
 source 'https://rubygems.org/'
 
 gem 'devise'
+gem 'figaro'
+gem 'fitgem_oauth2', '~>1.0.5'
 gem 'font-awesome-rails'
 gem 'foundation-rails'
 gem 'jquery-rails'
+gem 'omniauth-fitbit', '~>2.0.0'
 gem 'pg', '~> 0.18'
 gem 'rails', '~> 5.0.0'
 gem 'sass-rails', '~> 5.0'
