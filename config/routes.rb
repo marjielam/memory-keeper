@@ -18,4 +18,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get 'fitbit/users/:user_id/:resource/:date.json' => 'fitbit_api#data_request'
 end

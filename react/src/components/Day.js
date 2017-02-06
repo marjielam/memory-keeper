@@ -9,7 +9,9 @@ class Day extends Component {
     super(props);
     this.state = {
       dayInfo: "",
-      dayId: this.props.dayId
+      dayId: this.props.dayId,
+      userInfo: "",
+      fitbitUser: false
     };
     this.getDay = this.getDay.bind(this);
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -17,6 +19,7 @@ class Day extends Component {
 
   componentWillMount() {
     this.getDay();
+    this.getUserInfo();
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -45,7 +48,43 @@ class Day extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  getUserInfo() {
+    fetch(`/api/v1/users/${this.props.currentUserId}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status}, (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let userInfo = body;
+      if (userInfo.provider == "fitbit") {
+        this.setState({
+          userInfo: userInfo,
+          fitbitUser: true
+        });
+      } else {
+        this.setState({ userInfo: userInfo });
+      }
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   render() {
+    let fitbit;
+    if (this.state.fitbitUser) {
+      fitbit =
+      <Fitbit
+      currentUserId={this.props.currentUserId}
+      userInfo={this.state.userInfo}
+      date={this.state.dayInfo.day.date}
+      />;
+    }
+
     if (this.state.dayInfo) {
       return (
         <div>
@@ -56,7 +95,7 @@ class Day extends Component {
           questionBody={this.state.dayInfo.question.body}
           currentUserId={this.props.currentUserId}
           />
-          <Fitbit />
+          {fitbit}
         </div>
       );
     }

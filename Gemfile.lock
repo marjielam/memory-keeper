@@ -93,6 +93,8 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.4.6)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
@@ -266,6 +268,7 @@ DEPENDENCIES
   fitgem_oauth2 (~> 1.0.5)
   font-awesome-rails
   foundation-rails
+  httparty
   jquery-rails
   launchy
   listen (~> 3.0.5)
