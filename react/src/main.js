@@ -26,6 +26,7 @@ $(function() {
       render: function () {
         return (
             <Day
+            key={this.props.params.id}
             dayId={this.props.params.id}
             currentUserId={currentUserId}
             />

@@ -7,6 +7,7 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dayId: this.props.dayId,
       answerStatus: "new",
       answer: "",
       previousAnswers: [],
