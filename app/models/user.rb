@@ -13,10 +13,22 @@ class User < ApplicationRecord
       user.name = auth.info.display_name
       user.email = auth.info.email || "#{auth.uid}@#{auth.provider}.generated"
       user.password = Devise.friendly_token[0, 20]
+      user.access_token = auth['credentials']['token']
+      user.refresh_token = auth['credentials']['refresh_token']
+      user.expires_at = auth['credentials']['expires_at']
     end
   end
 
   def fitbit_user?
     provider == "fitbit"
+  end
+
+  def fitbit_client
+    FitgemOauth2::Client.new(
+      token: access_token,
+      client_id: ENV['FITBIT_CLIENT_ID'],
+      client_secret: ENV['FITBIT_CLIENT_SECRET'],
+      user_id: uid
+    )
   end
 end

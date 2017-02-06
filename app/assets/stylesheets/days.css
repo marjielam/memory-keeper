@@ -45,6 +45,10 @@ body {
   border-bottom: solid #CB7028 .3em;
 }
 
+.save-answer:focus, .edit-answer:focus {
+  outline: none;
+}
+
 .fa {
   padding: .5em;
 }

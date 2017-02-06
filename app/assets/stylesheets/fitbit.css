@@ -1,0 +1,13 @@
+.fitbit-tile {
+  text-align: center;
+  font-size: 2em;
+  color: #9b59b6;
+  font-weight: 900;
+  padding: .5em;
+}
+
+.fitbit-tile:hover {
+  background-color: #bdc3c7;
+  font-size: 2.5em;
+  border: solid white .25em;
+}
