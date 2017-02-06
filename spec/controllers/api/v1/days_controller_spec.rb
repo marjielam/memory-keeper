@@ -55,7 +55,6 @@ RSpec.describe Api::V1::DaysController, type: :controller do
       expect(json["day"]["id"]).to eq day.id
       expect(json["day"]["user_id"]).to eq day.user.id
       expect(json["day"]["date"]).to eq "2017-01-02"
-      expect(json["question"]["id"]).to eq 2
       expect(json["question"]["body"]).to eq "What are you most grateful for?"
     end
   end

@@ -1,7 +1,6 @@
 class Api::V1::DaysController < ApplicationController
   skip_before_filter :verify_authenticity_token
   respond_to :json
-  # before_filter :authenticate_user!
 
   def index
     @user = User.find(params[:user_id])
