@@ -21,14 +21,7 @@ class Day extends Component {
     this.getDay();
     this.getUserInfo();
   }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (this.state.dayInfo == "" ||
-      this.state.dayInfo.day.id != nextProps.dayId) {
-      this.getDay();
-    }
-  }
-
+  
   getDay() {
     fetch(`/api/v1/days/${this.props.dayId}`)
     .then(response => {
@@ -76,7 +69,7 @@ class Day extends Component {
 
   render() {
     let fitbit;
-    if (this.state.fitbitUser) {
+    if (this.state.dayInfo && this.state.fitbitUser) {
       fitbit =
       <Fitbit
       currentUserId={this.props.currentUserId}
