@@ -21,6 +21,7 @@ class Api::V1::ImagesController < ApplicationController
   def env_variables
     @cloudinary_upload_url = ENV['CLOUDINARY_UPLOAD_URL']
     @cloudinary_upload_preset = ENV['CLOUDINARY_UPLOAD_PRESET']
-    render json: { url: @cloudinary_upload_url, preset: @cloudinary_upload_preset }
+    render json:
+      { url: @cloudinary_upload_url, preset: @cloudinary_upload_preset }
   end
 end
