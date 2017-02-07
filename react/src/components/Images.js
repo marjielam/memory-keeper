@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';

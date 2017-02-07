@@ -33,13 +33,23 @@ class DayTile extends Component {
       display = questionBody;
     }
 
-    return (
-      <div className="day-tile small-12 medium-6 large-3 columns"
-        onMouseOver={() => this.hoverOn()} onMouseOut={() => this.hoverOff()}
-        onClick={() => this.handleClick()} >
-        <span>{display}</span>
-      </div>
-    );
+    if (this.props.end == "true") {
+      return (
+        <div className="day-tile small-12 medium-6 large-3 columns end"
+          onMouseOver={() => this.hoverOn()} onMouseOut={() => this.hoverOff()}
+          onClick={() => this.handleClick()} >
+          <span>{display}</span>
+        </div>
+      );
+    } else {
+      return (
+        <div className="day-tile small-12 medium-6 large-3 columns"
+          onMouseOver={() => this.hoverOn()} onMouseOut={() => this.hoverOff()}
+          onClick={() => this.handleClick()} >
+          <span>{display}</span>
+        </div>
+      );
+    }
   }
 }
 

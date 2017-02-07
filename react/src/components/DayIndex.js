@@ -63,16 +63,30 @@ class DayIndex extends Component {
   }
 
   render() {
-    let dayTiles = this.state.dayInfo.map(day => {
+    let numTiles = this.state.dayInfo.length;
+    let dayTiles = this.state.dayInfo.map((day, i) => {
       let displayDate = this.getDisplayDate(day.day.date, "full");
-      return (
-        <DayTile
-        key={day.day.id}
-        dayId={day.day.id}
-        questionBody={day.question.body}
-        displayDate={displayDate}
-        />
-      );
+      if (numTiles == i + 1) {
+        return (
+          <DayTile
+          key={day.day.id}
+          dayId={day.day.id}
+          questionBody={day.question.body}
+          displayDate={displayDate}
+          end='true'
+          />
+        );
+      } else {
+        return (
+          <DayTile
+          key={day.day.id}
+          dayId={day.day.id}
+          questionBody={day.question.body}
+          displayDate={displayDate}
+          end='false'
+          />
+        );
+      }
     });
     return (
       <div>
