@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Question from './Question';
 import Fitbit from './Fitbit';
+import Images from './Images';
 
 class Day extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Day extends Component {
     this.getDay();
     this.getUserInfo();
   }
-  
+
   getDay() {
     fetch(`/api/v1/days/${this.props.dayId}`)
     .then(response => {
@@ -89,6 +90,9 @@ class Day extends Component {
           currentUserId={this.props.currentUserId}
           />
           {fitbit}
+          <Images
+          dayId={this.state.dayInfo.day.id}
+          />
         </div>
       );
     }

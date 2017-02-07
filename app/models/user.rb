@@ -31,4 +31,8 @@ class User < ApplicationRecord
       user_id: uid
     )
   end
+
+  def token_expired?
+    return Time.at(expires_at) < Time.now
+  end
 end

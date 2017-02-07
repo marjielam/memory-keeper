@@ -1,0 +1,28 @@
+.image-uploads {
+  border: dashed #bdc3c7;
+  margin: 2em;
+  height: 5em;
+  text-align: center;
+  padding: 1em;
+}
+
+.image-large {
+  background-color: #bdc3c7;
+  text-align: center;
+  padding: 2em;
+}
+
+div.image-tile {
+  padding: .5em;
+  float: left;
+  width: 10%;
+}
+
+div.image-tile:hover {
+  background-color: #bdc3c7;
+}
+
+div.image-tile img {
+    width: 100%;
+    height: auto;
+}
