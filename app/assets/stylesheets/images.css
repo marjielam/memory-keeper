@@ -9,13 +9,17 @@
 .image-large {
   background-color: #bdc3c7;
   text-align: center;
-  padding: 2em;
+  padding: 1em;
+}
+
+.image-large img {
+  max-height: 25em;
 }
 
 div.image-tile {
   padding: .5em;
   float: left;
-  width: 10%;
+  height: 8em;
 }
 
 div.image-tile:hover {
@@ -23,6 +27,11 @@ div.image-tile:hover {
 }
 
 div.image-tile img {
-    width: 100%;
-    height: auto;
+  max-height: 7em;
+}
+
+.delete-image {
+  width: 12em;
+  padding: .15em;
+  margin: .5em auto;
 }

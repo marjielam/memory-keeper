@@ -16,6 +16,11 @@ class Api::V1::ImagesController < ApplicationController
   end
 
   def destroy
+    @day = Day.find(params[:day_id])
+    @image = Image.find(params[:id])
+    @image.destroy
+    @images = @day.images
+    render json: @images
   end
 
   def env_variables

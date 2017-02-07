@@ -84,9 +84,11 @@ class Fitbit extends Component {
     let sleepTile;
     let caloriesTile;
     if (this.state.stepsData) {
+      let stepsIcon = <i className="fa fa-male" aria-hidden="true"></i>;
       stepsTile =
       <FitbitTile
-      title="Steps"
+      icon={stepsIcon}
+      title="steps"
       data={this.state.stepsData["activities-steps"][0]["value"]}
       />;
     }
@@ -96,17 +98,21 @@ class Fitbit extends Component {
       let sleepHours = Math.floor(totalMinutes / 60);
       let sleepMinutes = totalMinutes % 60;
       let sleepData = `${sleepHours} hr ${sleepMinutes} min`
+      let sleepIcon = <i className="fa fa-bed" aria-hidden="true"></i>
       sleepTile =
       <FitbitTile
-      title="Sleep"
+      icon={sleepIcon}
+      title="sleep"
       data={sleepData}
       />;
     }
 
     if (this.state.caloriesData) {
+      let caloriesIcon = <i className="fa fa-free-code-camp " aria-hidden="true"></i>;
       caloriesTile =
       <FitbitTile
-      title="Calories"
+      icon={caloriesIcon}
+      title="calories"
       data={this.state.caloriesData["activities-calories"][0]["value"]}
       />;
     }
