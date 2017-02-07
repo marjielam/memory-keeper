@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get 'env_variables' => 'images#env_variables'
       resources :days, only: [:show, :create] do
         resources :answers, only: [:index, :create, :update]
+        resources :images, only: [:index, :create, :destroy]
       end
       resources :users, only: [:show] do
         resources :days, only: [:index, :show] do

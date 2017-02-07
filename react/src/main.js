@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-import 'babel-polyfill'
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';

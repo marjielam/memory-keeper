@@ -7,6 +7,7 @@ RSpec.describe Day, type: :model do
     it { should belong_to(:user) }
     it { should have_one(:answer) }
     it { should have_one(:question) }
+    it { should have_many(:images) }
   end
 
   describe "validations" do
