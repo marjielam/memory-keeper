@@ -13,11 +13,13 @@ class Images extends Component {
       images: [],
       editing: false,
       largeImageId: "",
+      largeImageUrl: "",
       cloudinaryUploadUrl: "",
       cloudinaryUploadPreset: ""
     };
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleLargeImageClick = this.handleLargeImageClick.bind(this);
+    this.deleteImage = this.deleteImage.bind(this);
   }
 
   componentWillMount() {
@@ -69,7 +71,6 @@ class Images extends Component {
   saveImageToDatabase(url) {
     let imageData = {
       'image': {
-        'day_id': this.props.dayId,
         'url': url
       }
     };
@@ -135,6 +136,33 @@ class Images extends Component {
     this.setState({ largeImageId: "", largeImageUrl: "" });
   }
 
+  deleteImage(id) {
+    if (confirm("Are you sure?")) {
+      fetch(`/api/v1/days/${this.props.dayId}/images/${id}`, {
+        method: 'delete'
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}, (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        let images = body;
+        this.setState({
+          images: images,
+          largeImageId: "",
+          largeImageUrl: ""
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+  }
+
   render() {
     let images = this.state.images.map(image => {
       return (
@@ -151,8 +179,11 @@ class Images extends Component {
     if (this.state.largeImageId != "" && this.state.largeImageUrl != "") {
       largeImage =
       <ImageLarge
+        key={this.state.largeImageId}
+        id={this.state.largeImageId}
         url={this.state.largeImageUrl}
         handleLargeImageClick={this.handleLargeImageClick}
+        deleteImage={this.deleteImage}
       />;
     }
 
@@ -160,7 +191,7 @@ class Images extends Component {
     if (this.state.editing) {
       dropzone =
       <div>
-        <h2 onClick={() => this.toggleEditing()}><i className="fa fa-minus" aria-hidden="true"></i>Hide photo uploader</h2>
+        <h3 onClick={() => this.toggleEditing()}><i className="fa fa-minus" aria-hidden="true"></i>HIDE PHOTO UPLOADER</h3>
         <Dropzone
         className="image-uploads"
         multiple={false}
@@ -172,17 +203,18 @@ class Images extends Component {
     } else {
       dropzone =
       <div>
-        <h2 onClick={() => this.toggleEditing()}>
-          <i className="fa fa-plus" aria-hidden="true"></i>Add a photo
-        </h2>
+        <h3 onClick={() => this.toggleEditing()}>
+          <i className="fa fa-plus" aria-hidden="true"></i>ADD A PHOTO
+        </h3>
       </div>;
     }
 
     return (
-      <div className="image-list">
+      <div>
         {dropzone}
+        <div className="image-list">{images}</div>
+        <br/><br/><br/><br/><br/><br/>
         {largeImage}
-        {images}
       </div>
     );
   }

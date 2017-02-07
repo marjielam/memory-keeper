@@ -58,13 +58,14 @@
   font-family: Open Sans;
 }
 
-h2, h3 {
+h2 {
   font-family: Julius Sans One, sans-serif;
   text-align: center;
 }
 
 h3 {
   font-size: 1em;
+  font-weight: bold;
 }
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
 //

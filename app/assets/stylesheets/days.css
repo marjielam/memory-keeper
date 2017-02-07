@@ -16,7 +16,7 @@ body {
 }
 
 .daily-question {
-  background-color: #B2DEE7;
+  background-color: #77D4E7;
   padding: 20px;
   text-align: center;
 }
@@ -31,7 +31,7 @@ body {
   margin: 1.5em;
 }
 
-.save-answer {
+.save-answer, .fa-pencil, .delete-image {
   background-color: #F38630;
   border-radius: .5em;
   border-bottom: solid #DB792B .3em;
@@ -40,7 +40,7 @@ body {
   color: white;
 }
 
-.save-answer:hover {
+.save-answer:hover, .fa-pencil:hover, .delete-image:hover {
   background-color: #DB792B;
   border-bottom: solid #CB7028 .3em;
 }
@@ -53,10 +53,6 @@ body {
   padding: .5em;
 }
 
-.fa-pencil:hover {
-  color: #F38630;
-}
-
 li {
   list-style: none;
 }
@@ -66,7 +62,7 @@ li {
 }
 
 .day-tile {
-  background-color: #B2DEE7;
+  background-color: #77D4E7;
   padding: 1.1em;
   border-radius: 1em;
   border: solid white .3em;
