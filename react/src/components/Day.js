@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Question from './Question';
 import Fitbit from './Fitbit';
 import Images from './Images';
+import Memories from './Memories';
 
 class Day extends Component {
   constructor(props) {
@@ -90,6 +91,9 @@ class Day extends Component {
           currentUserId={this.props.currentUserId}
           />
           {fitbit}
+          <Memories
+          dayId={this.state.dayInfo.day.id}
+          />
           <Images
           dayId={this.state.dayInfo.day.id}
           />
