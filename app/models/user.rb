@@ -7,16 +7,23 @@ class User < ApplicationRecord
   has_many :days
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.display_name
-      user.email = auth.info.email || "#{auth.uid}@#{auth.provider}.generated"
-      user.password = Devise.friendly_token[0, 20]
-      user.access_token = auth['credentials']['token']
-      user.refresh_token = auth['credentials']['refresh_token']
-      user.expires_at = auth['credentials']['expires_at']
+    user = User.where(
+      provider: auth.provider,
+      uid: auth.uid
+    ).first_or_create do |new_user|
+      new_user.provider = auth.provider
+      new_user.uid = auth.uid
+      new_user.name = auth.info.display_name
+      new_user.email = auth.info.email ||
+        "#{auth.uid}@#{auth.provider}.generated"
+      new_user.password = Devise.friendly_token[0, 20]
     end
+
+    user.access_token = auth['credentials']['token']
+    user.refresh_token = auth['credentials']['refresh_token']
+    user.expires_at = auth['credentials']['expires_at']
+
+    user
   end
 
   def fitbit_user?
@@ -30,9 +37,5 @@ class User < ApplicationRecord
       client_secret: ENV['FITBIT_CLIENT_SECRET'],
       user_id: uid
     )
-  end
-
-  def token_expired?
-    Time.at(expires_at) < Time.now
   end
 end
