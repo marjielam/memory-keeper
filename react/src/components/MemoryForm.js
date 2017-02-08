@@ -2,8 +2,8 @@ import React from 'react';
 
 const MemoryForm = props => {
   return (
-    <div>
-      <label htmlFor="memory-input">What do you want to remember about today?</label>
+    <div className="memory-form">
+      <span>What do you want to remember about today?</span>
       <input type="textarea" name="memory-input" id="memory-input"/>
       <button className="save-memory" onClick={() => props.createMemory()}>Save</button>
     </div>

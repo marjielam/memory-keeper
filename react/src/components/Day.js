@@ -5,6 +5,7 @@ import Question from './Question';
 import Fitbit from './Fitbit';
 import Images from './Images';
 import Memories from './Memories';
+import News from './News';
 
 class Day extends Component {
   constructor(props) {
@@ -94,6 +95,7 @@ class Day extends Component {
           <Memories
           dayId={this.state.dayInfo.day.id}
           />
+          <News />
           <Images
           dayId={this.state.dayInfo.day.id}
           />

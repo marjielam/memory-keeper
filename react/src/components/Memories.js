@@ -158,7 +158,8 @@ class Memories extends Component {
 
     });
     return (
-      <div>
+      <div className="small-12 medium-6 columns memories">
+        <h2>Memories</h2>
         {form}
         {memories}
       </div>

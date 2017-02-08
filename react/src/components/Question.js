@@ -206,7 +206,7 @@ class Question extends Component {
     } else if (this.state.answerStatus == "complete") {
       answer =
       <div>
-        {this.state.answer.body}
+        <span className="answer">{this.state.answer.body}</span>
         <button className="edit-answer" onClick={() => this.openEditForm()}>
           <i className="fa fa-pencil" aria-hidden="true"></i>
         </button>
@@ -235,13 +235,13 @@ class Question extends Component {
     let showPreviousAnswers;
     if (this.state.showPreviousAnswers) {
       showPreviousAnswers =
-      <div>
+      <div className="previous-answers">
         <h3 onClick={() => this.togglePreviousAnswers()}><i className="fa fa-minus" aria-hidden="true"></i>Hide previous answers</h3>
-        <ul>{previousAnswerList}</ul>
+        <ul className="previous-answers-list">{previousAnswerList}</ul>
       </div>;
     } else {
       showPreviousAnswers =
-      <div>
+      <div className="previous-answers">
         <h3 onClick={() => this.togglePreviousAnswers()}><i className="fa fa-plus" aria-hidden="true"></i>Show previous answers</h3>
       </div>;
     }
@@ -251,7 +251,6 @@ class Question extends Component {
         <h2>{displayDate}</h2>
         <p className="question-body">{this.props.questionBody}</p>
         {answer}
-
         {showPreviousAnswers}
       </div>
     );

@@ -31,7 +31,7 @@ body {
   margin: 1.5em;
 }
 
-.save-answer, .fa-pencil, .fa-times, .delete-image, .save-memory, .update-memory {
+.save-answer, .fa-pencil, .delete-image {
   background-color: #F38630;
   border-radius: .5em;
   border-bottom: solid #DB792B .3em;
@@ -40,7 +40,7 @@ body {
   color: white;
 }
 
-.save-answer:hover, .fa-pencil:hover, .fa-times:hover, .delete-image:hover, .save-memory:hover, .update-memory:hover {
+.save-answer:hover, .fa-pencil:hover, .delete-image:hover {
   background-color: #DB792B;
   border-bottom: solid #CB7028 .3em;
 }
@@ -85,4 +85,21 @@ li {
   background-color: #34495e;
   color: white;
   font-size: 1em;
+}
+
+.previous-answers {
+  background-color: #ecf0f1;
+  width: 15em;
+  margin: auto;
+  border-radius: .5em;
+}
+
+.previous-answers-list {
+  background-color: white;
+  margin: 0px;
+  border-radius: 0em 0em .5em .5em;
+}
+
+.previous-answers-list li {
+  margin: none;
 }
