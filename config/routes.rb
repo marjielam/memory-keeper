@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users,
-    controllers: { omniauth_callbacks: "omniauth_callbacks",
-      registrations: "registrations"}
+    controllers: {
+      omniauth_callbacks: "omniauth_callbacks",
+      registrations: "registrations"
+    }
 
   root "days#index"
 
