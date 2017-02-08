@@ -1,0 +1,45 @@
+.memories {
+  color: #e74c3c;
+  padding: 1em;
+}
+
+.memories h2 {
+  font-weight: 900;
+  /*font-family: Sacramento;*/
+}
+
+.memory-tile, .memory-form {
+  padding: .5em;
+  background-color: #e74c3c;
+  color: white;
+  margin: .5em;
+  border-radius: .5em;
+}
+
+.memory-form label {
+  color: white;
+}
+
+.save-memory, .edit-memory .fa-pencil, .update-memory, .delete-memory .fa-times {
+  background-color: #77D4E7;
+  border-radius: .5em;
+  border-bottom: solid #5BC2D6 .3em;
+  padding: .5em;
+  margin: .25em;
+  color: white;
+}
+
+.save-memory:hover, .edit-memory .fa-pencil:hover, .update-memory:hover, .delete-memory .fa-times:hover {
+  background-color: #5BC2D6;
+  border-bottom: solid #52AEC0 .3em;
+}
+
+.save-memory:focus, input:focus, .update-memory:focus, .fa-pencil:focus, .fa-times:focus,
+.edit-memory:focus, .update-memory:focus, .delete-memory:focus {
+  outline: none;
+}
+
+#memory-input, #memory-edit {
+  width: 85%;
+  margin-right: .5em;
+}

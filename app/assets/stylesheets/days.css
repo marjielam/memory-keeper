@@ -45,7 +45,8 @@ body {
   border-bottom: solid #CB7028 .3em;
 }
 
-.save-answer:focus, .edit-answer:focus {
+.save-answer:focus, .edit-answer:focus, .delete-image:focus, .save-memory:focus, input:focus,
+.update-memory:focus, .fa-pencil:focus, .fa-times:focus {
   outline: none;
 }
 
@@ -84,4 +85,21 @@ li {
   background-color: #34495e;
   color: white;
   font-size: 1em;
+}
+
+.previous-answers {
+  background-color: #ecf0f1;
+  width: 15em;
+  margin: auto;
+  border-radius: .5em;
+}
+
+.previous-answers-list {
+  background-color: white;
+  margin: 0px;
+  border-radius: 0em 0em .5em .5em;
+}
+
+.previous-answers-list li {
+  margin: none;
 }

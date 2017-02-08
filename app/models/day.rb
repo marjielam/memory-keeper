@@ -3,6 +3,7 @@ class Day < ApplicationRecord
   has_one :answer
   has_one :question, through: :answer
   has_many :images
+  has_many :memories
 
   validates :date, presence: true
   validates :user, presence: true

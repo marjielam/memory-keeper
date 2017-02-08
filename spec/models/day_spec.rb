@@ -8,6 +8,7 @@ RSpec.describe Day, type: :model do
     it { should have_one(:answer) }
     it { should have_one(:question) }
     it { should have_many(:images) }
+    it { should have_many(:memories) }
   end
 
   describe "validations" do
