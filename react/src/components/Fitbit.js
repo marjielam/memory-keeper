@@ -108,7 +108,7 @@ class Fitbit extends Component {
     }
 
     if (this.state.caloriesData) {
-      let caloriesIcon = <i className="fa fa-free-code-camp " aria-hidden="true"></i>;
+      let caloriesIcon = <i className="fa fa-fire " aria-hidden="true"></i>;
       caloriesTile =
       <FitbitTile
       icon={caloriesIcon}
