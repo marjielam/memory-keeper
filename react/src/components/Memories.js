@@ -14,6 +14,7 @@ class Memories extends Component {
     this.createMemory = this.createMemory.bind(this);
     this.openMemoryEditForm = this.openMemoryEditForm.bind(this);
     this.updateMemory = this.updateMemory.bind(this);
+    this.deleteMemory = this.deleteMemory.bind(this);
   }
 
   componentWillMount() {
@@ -112,6 +113,32 @@ class Memories extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  deleteMemory(id) {
+    if (confirm("Are you sure?")) {
+      fetch(`/api/v1/days/${this.props.dayId}/memories/${id}`, {
+        method: 'delete'
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}, (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        let memories = body;
+        this.setState({
+          memories: memories,
+          editingMemoryId: ""
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+  }
+
   render() {
     let form;
     if (this.state.editing) {
@@ -151,6 +178,7 @@ class Memories extends Component {
           body={memory.body}
           openMemoryEditForm={this.openMemoryEditForm}
           updateMemory={this.updateMemory}
+          deleteMemory={this.deleteMemory}
           editing="false"
           />
         );

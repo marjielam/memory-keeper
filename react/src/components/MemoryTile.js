@@ -15,7 +15,7 @@ const MemoryTile = props => {
         <button className="edit-memory" onClick={() => props.openMemoryEditForm(props.id)}>
           <i className="fa fa-pencil" aria-hidden="true"></i>
         </button>
-        <button className="delete-memory">
+        <button className="delete-memory" onClick={() => props.deleteMemory(props.id)}>
           <i className="fa fa-times" aria-hidden="true"></i>
         </button>
       </div>

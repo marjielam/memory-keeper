@@ -39,6 +39,7 @@
   outline: none;
 }
 
-.memory-input {
-  width: 75%;
+#memory-input, #memory-edit {
+  width: 85%;
+  margin-right: .5em;
 }
