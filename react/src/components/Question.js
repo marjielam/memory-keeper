@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PreviousAnswer from './PreviousAnswer';
+import { browserHistory } from 'react-router';
 
 class Question extends Component {
   constructor(props) {
@@ -13,13 +14,7 @@ class Question extends Component {
       previousAnswers: [],
       showPreviousAnswers: false
     };
-    this.getAnswer = this.getAnswer.bind(this);
-    this.getPreviousAnswers = this.getPreviousAnswers.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.saveNewAnswer = this.saveNewAnswer.bind(this);
-    this.openEditForm = this.openEditForm.bind(this);
-    this.editAnswer = this.editAnswer.bind(this);
-    this.getDisplayDate = this.getDisplayDate.bind(this);
+    this.handlePreviousAnswerClick = this.handlePreviousAnswerClick.bind(this);
   }
 
   componentDidMount() {
@@ -193,6 +188,10 @@ class Question extends Component {
     this.setState({ showPreviousAnswers: newState });
   }
 
+  handlePreviousAnswerClick(dayId) {
+    browserHistory.push(`/days/${dayId}`);
+  }
+
   render() {
     let displayDate = this.getDisplayDate(this.props.dayDate, "full");
 
@@ -227,6 +226,7 @@ class Question extends Component {
         id={answerData.answer.id}
         body={answerData.answer.body}
         dayId={answerData.day.id}
+        handlePreviousAnswerClick={this.handlePreviousAnswerClick}
         displayDate={displayDate}
         />
       );

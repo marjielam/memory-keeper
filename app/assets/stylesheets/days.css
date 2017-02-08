@@ -103,3 +103,7 @@ li {
 .previous-answers-list li {
   margin: none;
 }
+
+.previous-answers-list li:hover {
+  color: #F38630;
+}
