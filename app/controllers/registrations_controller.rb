@@ -20,7 +20,19 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    super
+    if current_user.fitbit_user?
+      @name = params["user"]["name"]
+      @email = params["user"]["email"]
+      if current_user.update(name: @name, email: @email)
+        flash[:notice] = "Your account has been updated successfully."
+        redirect_to "/"
+      else
+        flash[:notice] = current_user.errors.full_messages.to_sentence
+        redirect_to "/users/edit"
+      end
+    else
+      super
+    end
   end
 
   def destroy
@@ -41,7 +53,7 @@ class RegistrationsController < Devise::RegistrationsController
       if @answer
         @answer.destroy
       end
-      
+
       day.destroy
     end
     @user.destroy

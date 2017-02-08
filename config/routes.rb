@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     controllers: { omniauth_callbacks: "omniauth_callbacks",
       registrations: "registrations"}
 
-
   root "days#index"
 
   resources :days, only: [:index, :show, :create]
