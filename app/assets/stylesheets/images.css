@@ -35,3 +35,11 @@ div.image-tile img {
   padding: .15em;
   margin: .5em auto;
 }
+
+.images h2 {
+  font-weight: 900;
+}
+
+.images {
+  color: #1abc9c;
+}

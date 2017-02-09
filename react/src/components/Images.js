@@ -212,7 +212,8 @@ class Images extends Component {
     }
 
     return (
-      <div className="small-12 columns">
+      <div className="small-12 columns images">
+        <h2>Photos</h2>
         {dropzone}
         <div className="image-list">{images}</div>
         <br/><br/><br/><br/><br/><br/>

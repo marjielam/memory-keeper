@@ -18,6 +18,7 @@ class Day extends Component {
     };
     this.getDay = this.getDay.bind(this);
     this.componentWillMount = this.componentWillMount.bind(this);
+    this.getDisplayDate = this.getDisplayDate.bind(this);
   }
 
   componentWillMount() {
@@ -70,6 +71,33 @@ class Day extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  getDisplayDate(dateString, method) {
+    let monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    let dateRaw = new Date(dateString);
+    let dateCorrected = new Date(dateRaw.getTime() - dateRaw.getTimezoneOffset() * -60000);
+    let displayDate;
+    if (method == "full") {
+      displayDate =
+      `${monthNames[dateCorrected.getMonth()]} ${dateCorrected.getDate()}, ${dateCorrected.getFullYear()}`;
+    } else if (method == "year") {
+      displayDate = `${dateCorrected.getFullYear()}`;
+    }
+    return displayDate;
+  }
+
   render() {
     let fitbit;
     if (this.state.dayInfo && this.state.fitbitUser) {
@@ -82,14 +110,19 @@ class Day extends Component {
     }
 
     if (this.state.dayInfo) {
+      let displayDate =
+        this.getDisplayDate(this.state.dayInfo.day.date, "full");
+
       return (
         <div>
+          <h2 className="date">{displayDate}</h2>
           <Question
           dayId={this.state.dayInfo.day.id}
           dayDate={this.state.dayInfo.day.date}
           questionId={this.state.dayInfo.question.id}
           questionBody={this.state.dayInfo.question.body}
           currentUserId={this.props.currentUserId}
+          getDisplayDate={this.getDisplayDate}
           />
           {fitbit}
           <Memories

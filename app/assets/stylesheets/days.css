@@ -9,6 +9,11 @@ body {
   font-family: Open Sans, sans-serif;
 }
 
+.date {
+  background-color: #2980b9;
+  color: white;
+}
+
 .today-button {
   border: solid black .1em;
   border-radius: .5em;
@@ -18,7 +23,17 @@ body {
 .daily-question {
   background-color: #77D4E7;
   padding: 20px;
+  margin: 1.5em;
+  border-radius: .3em;
   text-align: center;
+}
+
+.daily-question h2 {
+  font-weight: normal;
+}
+
+.daily-question p {
+  font-size: 1.2em;
 }
 
 .flash {
@@ -33,16 +48,21 @@ body {
 
 .save-answer, .fa-pencil, .delete-image {
   background-color: #F38630;
-  border-radius: .5em;
+  border-radius: .3em;
   border-bottom: solid #DB792B .3em;
   padding: .5em;
   margin: .5em;
   color: white;
 }
 
+input#answer {
+  width: 75%;
+  margin: auto;
+}
+
 .save-answer:hover, .fa-pencil:hover, .delete-image:hover {
   background-color: #DB792B;
-  border-bottom: solid #CB7028 .3em;
+  border-bottom: solid #CB7028 .2em;
 }
 
 .save-answer:focus, .edit-answer:focus, .delete-image:focus, .save-memory:focus, input:focus,
@@ -60,6 +80,10 @@ li {
 
 .datepicker-days {
   height: 100px;
+}
+
+.day-index h2 {
+  font-weight: normal;
 }
 
 .day-tile {
@@ -91,15 +115,20 @@ li {
   background-color: #ecf0f1;
   width: 15em;
   margin: auto;
-  border-radius: .5em;
+  margin-top: .5em;
+  border-radius: .3em;
 }
 
 .previous-answers-list {
   background-color: white;
   margin: 0px;
-  border-radius: 0em 0em .5em .5em;
+  border-radius: 0em 0em .3em .3em;
 }
 
 .previous-answers-list li {
   margin: none;
+}
+
+.previous-answers-list li:hover {
+  color: #F38630;
 }

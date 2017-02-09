@@ -48,13 +48,13 @@
 @include foundation-top-bar;
 
 .top-bar .top-bar-title a {
- font-family: Sacramento;
- font-size: 2.3em;
- padding-left: .5em;
+  font-family: Sacramento;
+  font-size: 2.3em;
+  padding-left: .5em;
 }
 
 .top-bar .top-bar-title {
-  padding: 0em;
+  padding: 0;
 }
 
 .top-bar, .top-bar ul, .top-bar a, .has-tip {
@@ -66,6 +66,7 @@
 h2 {
   font-family: Julius Sans One, sans-serif;
   text-align: center;
+  font-weight: 900;
 }
 
 h3 {

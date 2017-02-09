@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PreviousAnswer from './PreviousAnswer';
+import { browserHistory } from 'react-router';
 
 class Question extends Component {
   constructor(props) {
@@ -13,13 +14,7 @@ class Question extends Component {
       previousAnswers: [],
       showPreviousAnswers: false
     };
-    this.getAnswer = this.getAnswer.bind(this);
-    this.getPreviousAnswers = this.getPreviousAnswers.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.saveNewAnswer = this.saveNewAnswer.bind(this);
-    this.openEditForm = this.openEditForm.bind(this);
-    this.editAnswer = this.editAnswer.bind(this);
-    this.getDisplayDate = this.getDisplayDate.bind(this);
+    this.handlePreviousAnswerClick = this.handlePreviousAnswerClick.bind(this);
   }
 
   componentDidMount() {
@@ -161,40 +156,17 @@ class Question extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  getDisplayDate(dateString, method) {
-    let monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    let dateRaw = new Date(dateString);
-    let dateCorrected = new Date(dateRaw.getTime() - dateRaw.getTimezoneOffset() * -60000);
-    let displayDate;
-    if (method == "full") {
-      displayDate =
-      `${monthNames[dateCorrected.getMonth()]} ${dateCorrected.getDate()}, ${dateCorrected.getFullYear()}`;
-    } else if (method == "year") {
-      displayDate = `${dateCorrected.getFullYear()}`;
-    }
-    return displayDate;
-  }
-
   togglePreviousAnswers() {
     let newState = !this.state.showPreviousAnswers;
     this.setState({ showPreviousAnswers: newState });
   }
 
+  handlePreviousAnswerClick(dayId) {
+    browserHistory.push(`/days/${dayId}`);
+  }
+
   render() {
-    let displayDate = this.getDisplayDate(this.props.dayDate, "full");
+    let displayDate = this.props.getDisplayDate(this.props.dayDate, "full");
 
     let answer;
     if (this.state.answerStatus == "new") {
@@ -220,13 +192,14 @@ class Question extends Component {
     }
 
     let previousAnswerList = this.state.previousAnswers.map(answerData => {
-      let displayDate = this.getDisplayDate(answerData.day.date, "year");
+      let displayDate = this.props.getDisplayDate(answerData.day.date, "year");
       return (
         <PreviousAnswer
         key={answerData.answer.id}
         id={answerData.answer.id}
         body={answerData.answer.body}
         dayId={answerData.day.id}
+        handlePreviousAnswerClick={this.handlePreviousAnswerClick}
         displayDate={displayDate}
         />
       );
@@ -248,7 +221,7 @@ class Question extends Component {
 
     return (
       <div className="daily-question">
-        <h2>{displayDate}</h2>
+        <h2>Daily Question</h2>
         <p className="question-body">{this.props.questionBody}</p>
         {answer}
         {showPreviousAnswers}
