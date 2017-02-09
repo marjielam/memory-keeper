@@ -89,8 +89,8 @@ class DayIndex extends Component {
       }
     });
     return (
-      <div>
-        <h2>Select a day</h2>
+      <div className="day-index">
+        <h2>Days you have visited</h2>
         {dayTiles}
       </div>
     );
