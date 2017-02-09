@@ -5,7 +5,7 @@ import Question from './Question';
 import Fitbit from './Fitbit';
 import Images from './Images';
 import Memories from './Memories';
-import News from './News';
+import Bestsellers from './Bestsellers';
 
 class Day extends Component {
   constructor(props) {
@@ -128,7 +128,9 @@ class Day extends Component {
           <Memories
           dayId={this.state.dayInfo.day.id}
           />
-          <News />
+          <Bestsellers
+          dayDate={this.state.dayInfo.day.date}
+          />
           <Images
           dayId={this.state.dayInfo.day.id}
           />

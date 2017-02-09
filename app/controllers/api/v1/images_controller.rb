@@ -26,7 +26,12 @@ class Api::V1::ImagesController < ApplicationController
   def env_variables
     @cloudinary_upload_url = ENV['CLOUDINARY_UPLOAD_URL']
     @cloudinary_upload_preset = ENV['CLOUDINARY_UPLOAD_PRESET']
+    @nyt_api_key = ENV['NYT_API_KEY']
     render json:
-      { url: @cloudinary_upload_url, preset: @cloudinary_upload_preset }
+      {
+        url: @cloudinary_upload_url,
+        preset: @cloudinary_upload_preset,
+        nyt: @nyt_api_key
+      }
   end
 end
