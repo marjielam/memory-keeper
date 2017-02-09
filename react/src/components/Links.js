@@ -122,8 +122,30 @@ class Links extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  deleteLink() {
-
+  deleteLink(id) {
+    if (confirm("Are you sure?")) {
+      fetch(`/api/v1/days/${this.props.dayId}/links/${id}`, {
+        method: 'delete'
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}, (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        let links = body;
+        this.setState({
+          links: links,
+          editingLinksId: ""
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
   }
 
   render() {

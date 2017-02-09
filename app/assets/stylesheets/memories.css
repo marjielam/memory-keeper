@@ -7,6 +7,37 @@
   font-weight: 900;
 }
 
+.links p {
+  margin-bottom: 0;
+}
+
+.links a {
+  color: #77D4E7;
+  font-weight: bold;
+}
+
+.links a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.links span {
+  display: table-cell;
+}
+
+.links input {
+  display: table-cell;
+  margin: .25em;
+}
+
+#label-edit, #label-input {
+  width: 50%;
+}
+
+#url-edit, #comment-edit, #url-input, #comment-input {
+  width: 95%;
+}
+
 .memory-tile, .memory-form, .link-tile, .link-form {
   padding: .5em;
   background-color: #e74c3c;
