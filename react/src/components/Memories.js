@@ -109,7 +109,7 @@ class Memories extends Component {
       let memories = body;
       this.setState({
         memories: memories,
-        editingMemoryId: false
+        editingMemoryId: ""
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
