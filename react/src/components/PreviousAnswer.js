@@ -4,8 +4,8 @@ import React from 'react';
 
 const PreviousAnswer = props => {
   return (
-    <li>
-      {props.displayDate}: {props.body}
+    <li onClick={() => props.handlePreviousAnswerClick(props.dayId)}>
+      {props.body} ({props.displayDate})
     </li>
   );
 }
