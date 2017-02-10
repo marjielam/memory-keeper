@@ -1,30 +1,29 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
-import MemoryForm from './MemoryForm';
-import MemoryTile from './MemoryTile';
+import LinkForm from './LinkForm';
+import LinkTile from './LinkTile';
 
-class Memories extends Component {
+class Links extends Component {
   constructor(props) {
     super(props);
     this.state = {
       editing: false,
-      memories: [],
-      editingMemoryId: ""
+      links: [],
+      editingLinkId: ""
     };
-
-    this.createMemory = this.createMemory.bind(this);
-    this.openMemoryEditForm = this.openMemoryEditForm.bind(this);
-    this.updateMemory = this.updateMemory.bind(this);
-    this.deleteMemory = this.deleteMemory.bind(this);
+    this.createLink = this.createLink.bind(this);
+    this.openLinkEditForm = this.openLinkEditForm.bind(this);
+    this.updateLink = this.updateLink.bind(this);
+    this.deleteLink = this.deleteLink.bind(this);
   }
 
   componentWillMount() {
-    this.getMemories();
+    this.getLinks();
   }
 
-  getMemories() {
-    fetch(`/api/v1/days/${this.props.dayId}/memories`)
+  getLinks() {
+    fetch(`/api/v1/days/${this.props.dayId}/links`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -36,8 +35,8 @@ class Memories extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      let memories = body;
-      this.setState({ memories: memories });
+      let links = body;
+      this.setState({ links: links });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -47,15 +46,19 @@ class Memories extends Component {
     this.setState({ editing: newState });
   }
 
-  createMemory() {
-    let body = document.getElementById('memory-input').value;
-    let memoryData = {
-      'memory': {
-        'body': body
+  createLink() {
+    let label = document.getElementById('label-input').value;
+    let url = document.getElementById('url-input').value;
+    let comment = document.getElementById('comment-input').value;
+    let linkData = {
+      'link': {
+        'label': label,
+        'url': url,
+        'comment': comment
       }
     };
-    let jsonStringData = JSON.stringify(memoryData);
-    fetch(`/api/v1/days/${this.props.dayId}/memories`, {
+    let jsonStringData = JSON.stringify(linkData);
+    fetch(`/api/v1/days/${this.props.dayId}/links`, {
       method: 'post',
       body: jsonStringData
     })
@@ -70,28 +73,32 @@ class Memories extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      let memories = body;
+      let links = body;
       this.setState({
-        memories: memories,
+        links: links,
         editing: false
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  openMemoryEditForm(id) {
-    this.setState({ editingMemoryId: id });
+  openLinkEditForm(id) {
+    this.setState({ editingLinkId: id });
   }
 
-  updateMemory(id) {
-    let newBody = document.getElementById('memory-edit').value;
-    let memoryData = {
-      'memory': {
-        'body': newBody
+  updateLink(id) {
+    let label = document.getElementById('label-edit').value;
+    let url = document.getElementById('url-edit').value;
+    let comment = document.getElementById('comment-edit').value;
+    let linkData = {
+      'link': {
+        'label': label,
+        'url': url,
+        'comment': comment
       }
     };
-    let jsonStringData = JSON.stringify(memoryData);
-    fetch(`/api/v1/days/${this.props.dayId}/memories/${id}`, {
+    let jsonStringData = JSON.stringify(linkData);
+    fetch(`/api/v1/days/${this.props.dayId}/links/${id}`, {
       method: 'put',
       body: jsonStringData
     })
@@ -106,18 +113,18 @@ class Memories extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      let memories = body;
+      let links = body;
       this.setState({
-        memories: memories,
-        editingMemoryId: ""
+        links: links,
+        editingLinkId: ""
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  deleteMemory(id) {
+  deleteLink(id) {
     if (confirm("Are you sure?")) {
-      fetch(`/api/v1/days/${this.props.dayId}/memories/${id}`, {
+      fetch(`/api/v1/days/${this.props.dayId}/links/${id}`, {
         method: 'delete'
       })
       .then(response => {
@@ -131,10 +138,10 @@ class Memories extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let memories = body;
+        let links = body;
         this.setState({
-          memories: memories,
-          editingMemoryId: ""
+          links: links,
+          editingLinksId: ""
         });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -147,54 +154,60 @@ class Memories extends Component {
       form =
       <div>
         <h3 onClick={() => this.toggleEditing()}>
-          <i className="fa fa-minus" aria-hidden="true"></i>HIDE NEW MEMORY FORM
+          <i className="fa fa-minus" aria-hidden="true"></i>HIDE NEW LINK FORM
         </h3>
-        <MemoryForm
-        createMemory={this.createMemory}
+        <LinkForm
+        createLink={this.createLink}
         />
       </div>;
     } else {
       form =
       <h3 onClick={() => this.toggleEditing()}>
-        <i className="fa fa-plus" aria-hidden="true"></i>ADD A MEMORY
+        <i className="fa fa-plus" aria-hidden="true"></i>ADD A LINK
       </h3>;
     }
 
-    let memories = this.state.memories.map(memory => {
-      if (memory.id == this.state.editingMemoryId) {
+    let links = this.state.links.map(link => {
+      if (link.id == this.state.editingLinkId) {
         return (
-          <MemoryTile
-          key={memory.id}
-          id={memory.id}
-          body={memory.body}
-          openMemoryEditForm={this.openMemoryEditForm}
-          updateMemory={this.updateMemory}
+          <LinkTile
+          key={link.id}
+          id={link.id}
+          label={link.label}
+          url={link.url}
+          comment={link.comment}
+          openLinkEditForm={this.openLinkEditForm}
+          updateLink={this.updateLink}
+          deleteLink={this.deleteLink}
           editing="true"
           />
         );
       } else {
         return (
-          <MemoryTile
-          key={memory.id}
-          id={memory.id}
-          body={memory.body}
-          openMemoryEditForm={this.openMemoryEditForm}
-          updateMemory={this.updateMemory}
-          deleteMemory={this.deleteMemory}
+          <LinkTile
+          key={link.id}
+          id={link.id}
+          label={link.label}
+          url={link.url}
+          comment={link.comment}
+          openLinkEditForm={this.openLinkEditForm}
+          updateLink={this.updateLink}
+          deleteLink={this.deleteLink}
           editing="false"
           />
         );
-      }
 
+      }
     });
+
     return (
-      <div className="small-12 medium-6 columns memories">
-        <h2>Memories</h2>
+      <div className="small-12 medium-6 columns links">
+        <h2>Links</h2>
         {form}
-        {memories}
+        {links}
       </div>
     );
   }
 }
 
-export default Memories;
+export default Links;

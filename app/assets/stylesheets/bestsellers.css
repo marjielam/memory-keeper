@@ -4,14 +4,14 @@
 
 .bestsellers .counter {
   display: table-cell;
-  width: 2em;
-  height: 2em;
+  width: 2.5em;
+  height: 1.5em;
   background-color: #27ae60;
-  border-radius: 1em;
+  border-radius: 1.5em;
   color: white;
   font-weight: 900;
-  font-family: Julius Sans One;
-  font-size: 1.5em;
+  font-family: Open Sans;
+  font-size: 1em;
   text-align: center;
   vertical-align: middle;
 }

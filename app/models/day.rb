@@ -4,6 +4,7 @@ class Day < ApplicationRecord
   has_one :question, through: :answer
   has_many :images
   has_many :memories
+  has_many :links
 
   validates :date, presence: true
   validates :user, presence: true

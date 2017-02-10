@@ -5,6 +5,7 @@ import Question from './Question';
 import Fitbit from './Fitbit';
 import Images from './Images';
 import Memories from './Memories';
+import Links from './Links';
 import Bestsellers from './Bestsellers';
 
 class Day extends Component {
@@ -126,6 +127,9 @@ class Day extends Component {
           />
           {fitbit}
           <Memories
+          dayId={this.state.dayInfo.day.id}
+          />
+          <Links
           dayId={this.state.dayInfo.day.id}
           />
           <Bestsellers

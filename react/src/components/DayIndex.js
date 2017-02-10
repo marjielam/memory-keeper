@@ -90,7 +90,7 @@ class DayIndex extends Component {
     });
     return (
       <div className="day-index">
-        <h2>Days you have visited</h2>
+        <h2>Days you have viewed</h2>
         {dayTiles}
       </div>
     );

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207221730) do
+ActiveRecord::Schema.define(version: 20170209204403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20170207221730) do
     t.integer "day_id",    null: false
     t.string  "image_url", null: false
     t.index ["day_id"], name: "index_images_on_day_id", using: :btree
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.integer "day_id",  null: false
+    t.string  "url",     null: false
+    t.string  "label"
+    t.string  "comment"
+    t.index ["day_id"], name: "index_links_on_day_id", using: :btree
   end
 
   create_table "memories", force: :cascade do |t|
