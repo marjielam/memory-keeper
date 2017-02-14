@@ -20,6 +20,7 @@ I have a lot of ideas for what I could do with this app. Here's what's next on m
 - Create index pages for memories, links, and photos, so you can see everything you added without looking at individual days
 - Add more tests, specifically tests for the React components
 - Add buttons for next day and previous day
+- Optimize the display for use on mobile devices
 - Explore other social media APIs to incorporate
 
 ## Deployment
