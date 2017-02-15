@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: "\"Memory Keeper\" <no-reply@memory-keeper.herokuapp.com>"
   layout 'mailer'
 end
