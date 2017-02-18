@@ -24,7 +24,11 @@ class RegistrationsController < Devise::RegistrationsController
       @name = params["user"]["name"]
       @email = params["user"]["email"]
       @reminder_email = params["user"]["reminder_email"]
-      if current_user.update(name: @name, email: @email, reminder_email: @reminder_email)
+      if current_user.update(
+        name: @name,
+        email: @email,
+        reminder_email: @reminder_email
+      )
         flash[:notice] = "Your account has been updated successfully."
         redirect_to "/"
       else
