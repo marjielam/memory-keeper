@@ -27,12 +27,6 @@ I have a lot of ideas for what I could do with this app. Here's what's next on m
 
 This app can be viewed at https://wwww.memory-keeper.herokuapp.com
 
-## Built With
-
-* [Rails](http://rubyonrails.org/) - the web application framework used
-* [React.js](https://facebook.github.io/react/) - Used for building the user interface
-* [Devise](https://rometools.github.io/rome/) - Used to for user authentication
-
 ![Build Status](https://codeship.com/projects/80975840-c931-0134-9c9f-3a0fd8dae151/status?branch=master)
 ![Code Climate](https://codeclimate.com/github/marjielam/memory-keeper.png)
 <!-- ![Coverage Status](https://coveralls.io/repos/marjielam/memory-keeper/badge.png) -->

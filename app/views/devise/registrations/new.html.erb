@@ -15,6 +15,11 @@
     </div>
 
     <div class="field">
+      <%= f.check_box :reminder_email %>
+      <%= f.label :reminder_email, "Send me a daily reminder email to fill out Memory Keeper" %>
+    </div>
+
+    <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>

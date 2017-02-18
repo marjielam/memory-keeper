@@ -14,6 +14,11 @@
       <%= f.email_field :email %>
     </div>
 
+    <div class="field">
+      <%= f.check_box :reminder_email %>
+      <%= f.label :reminder_email, "Send me a daily reminder email to fill out Memory Keeper" %>
+    </div>
+
     <% if !current_user.fitbit_user? %>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
