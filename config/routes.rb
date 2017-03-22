@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         resources :days, only: [:index, :show] do
           get 'previous_answers'
         end
+        resources :memories, only: [:index]
       end
     end
   end

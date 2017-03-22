@@ -42,6 +42,18 @@
             <% if user_signed_in? %>
               <li><%= link_to "LOG OUT", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "ACCOUNT SETTINGS", edit_user_registration_path, method: :get %></li>
+              <li>
+                <ul class="dropdown menu" data-dropdown-menu>
+                  <li>
+                    <a href="#">MORE</a>
+                    <ul class="menu vertical">
+                      <li>All Memories</li>
+                      <li>All Links</li>
+                      <li>All Photos</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
             <% else %>
               <li><a href="/users/sign_up">SIGN UP</a></li>
               <li><a href="/users/auth/fitbit">SIGN IN WITH FITBIT</a></li>
