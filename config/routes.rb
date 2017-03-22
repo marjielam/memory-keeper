@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root "days#index"
 
   resources :days, only: [:index, :show, :create]
+  resources :memories, only: [:index]
 
   namespace :api do
     namespace :v1 do
