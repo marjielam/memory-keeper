@@ -4,7 +4,9 @@ import React from 'react';
 
 const MemoriesIndex = props => {
   return (
-    <div>Memories</div>
+    <div>
+      <h2>All Memories</h2>
+    </div>
   );
 }
 
