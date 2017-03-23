@@ -3,6 +3,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'whatwg-fetch';
 import { Router, Route, browserHistory } from 'react-router';
 import Day from './components/Day';
 import DayIndex from './components/DayIndex';
