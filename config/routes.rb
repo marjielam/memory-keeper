@@ -18,13 +18,12 @@ Rails.application.routes.draw do
         resources :images, only: [:index, :create, :destroy]
         resources :memories, only: [:index, :create, :update, :destroy]
         resources :links, only: [:index, :create, :update, :destroy]
-
       end
       resources :users, only: [:show] do
         resources :days, only: [:index, :show] do
           get 'previous_answers'
         end
-        resources :memories, only: [:index]
+        get 'all_memories'
       end
     end
   end

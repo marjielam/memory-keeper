@@ -35,6 +35,17 @@ $(function() {
       }
     });
 
+    let MemoryWrapper = React.createClass({
+      render: function () {
+        return (
+            <MemoriesIndex
+            currentUserId={currentUserId}
+            />
+        );
+      }
+    });
+
+
     if (document.getElementById('calendar')) {
       ReactDOM.render(
         <Calendar
@@ -49,7 +60,7 @@ $(function() {
         <Router history={browserHistory}>
           <Route path="/" component={DayIndexWrapper} />
           <Route path="days/:id" component={DayWrapper} />
-          <Route path="memories" component={MemoriesIndex} />
+          <Route path="memories" component={MemoryWrapper} />
         </Router>,
         document.getElementById('app')
       );
