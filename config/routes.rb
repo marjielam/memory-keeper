@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root "days#index"
 
   resources :days, only: [:index, :show, :create]
+  resources :memories, only: [:index]
 
   namespace :api do
     namespace :v1 do
@@ -17,12 +18,12 @@ Rails.application.routes.draw do
         resources :images, only: [:index, :create, :destroy]
         resources :memories, only: [:index, :create, :update, :destroy]
         resources :links, only: [:index, :create, :update, :destroy]
-
       end
       resources :users, only: [:show] do
         resources :days, only: [:index, :show] do
           get 'previous_answers'
         end
+        get 'all_memories'
       end
     end
   end

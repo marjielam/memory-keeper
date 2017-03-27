@@ -8,6 +8,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import Day from './components/Day';
 import DayIndex from './components/DayIndex';
 import Calendar from './components/Calendar';
+import MemoriesIndex from './components/MemoriesIndex';
 
 $(function() {
   if (document.getElementById('current-user-id')) {
@@ -35,6 +36,17 @@ $(function() {
       }
     });
 
+    let MemoryWrapper = React.createClass({
+      render: function () {
+        return (
+            <MemoriesIndex
+            currentUserId={currentUserId}
+            />
+        );
+      }
+    });
+
+
     if (document.getElementById('calendar')) {
       ReactDOM.render(
         <Calendar
@@ -49,6 +61,7 @@ $(function() {
         <Router history={browserHistory}>
           <Route path="/" component={DayIndexWrapper} />
           <Route path="days/:id" component={DayWrapper} />
+          <Route path="memories" component={MemoryWrapper} />
         </Router>,
         document.getElementById('app')
       );
