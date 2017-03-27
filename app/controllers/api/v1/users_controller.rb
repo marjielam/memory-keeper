@@ -9,7 +9,9 @@ class Api::V1::UsersController < ApplicationController
     @memories = []
     @days = @user.days
     @days.each do |day|
-      @memories.concat(day.memories)
+      if !day.memories.empty?
+        @memories << [day, day.memories]
+      end
     end
     render json: @memories
   end

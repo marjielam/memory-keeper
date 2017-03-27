@@ -7,7 +7,7 @@ class MemoriesIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      memories: []
+      memoriesInfo: []
     };
   }
 
@@ -29,25 +29,33 @@ class MemoriesIndex extends Component {
     .then(response => response.json())
     .then(body => {
       let memories = body;
-      this.setState({ memories: memories });
+      this.setState({ memoriesInfo: memories });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
-    let memories = this.state.memories.map(memory => {
+    let memoriesInfo = this.state.memoriesInfo.map(day => {
+      let memories = day[1].map(memory => {
+        return (
+          <MemoryTile
+          key={memory.id}
+          id={memory.id}
+          body={memory.body}
+          />
+        );
+      });
       return (
-        <MemoryTile
-        key={memory.id}
-        id={memory.id}
-        body={memory.body}
-        />
+        <div>
+          {day[0].date}
+          {memories}
+        </div>
       );
     });
     return (
       <div>
       <h2>All Memories</h2>
-      {memories}
+      {memoriesInfo}
       </div>
     );
   }
