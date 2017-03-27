@@ -29,10 +29,41 @@ class MemoriesIndex extends Component {
     .then(response => response.json())
     .then(body => {
       let memories = body;
-      this.setState({ memoriesInfo: memories });
+      let memoriesInfo = memories.sort((day1, day2) => {
+        return day1[0].date < day2[0].date ? -1 : 1;
+      });
+      this.setState({ memoriesInfo: memoriesInfo });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
+
+  getDisplayDate(dateString, method) {
+    let monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    let dateRaw = new Date(dateString);
+    let dateCorrected = new Date(dateRaw.getTime() - dateRaw.getTimezoneOffset() * -60000);
+    let displayDate;
+    if (method == "full") {
+      displayDate =
+      `${monthNames[dateCorrected.getMonth()]} ${dateCorrected.getDate()}, ${dateCorrected.getFullYear()}`;
+    } else if (method == "year") {
+      displayDate = `${dateCorrected.getFullYear()}`;
+    }
+    return displayDate;
+  }
+
 
   render() {
     let memoriesInfo = this.state.memoriesInfo.map(day => {
@@ -45,9 +76,10 @@ class MemoriesIndex extends Component {
           />
         );
       });
+      let displayDate = this.getDisplayDate(day[0].date, 'full')
       return (
         <div>
-          {day[0].date}
+          <h3>{displayDate}</h3>
           {memories}
         </div>
       );
