@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import MemoryTile from './MemoryTile';
+import { browserHistory } from 'react-router';
 
 class MemoriesIndex extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class MemoriesIndex extends Component {
     };
     this.openMemoryEditForm = this.openMemoryEditForm.bind(this);
     this.updateMemory = this.updateMemory.bind(this);
+    this.deleteMemory = this.deleteMemory.bind(this);
   }
 
   componentDidMount() {
@@ -34,11 +36,15 @@ class MemoriesIndex extends Component {
     .then(body => {
       let memories = body;
       let memoriesInfo = memories.sort((day1, day2) => {
-        return day1[0].date < day2[0].date ? -1 : 1;
+        return day1[0].date > day2[0].date ? -1 : 1;
       });
       this.setState({ memoriesInfo: memoriesInfo });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  goToDay(dayId) {
+    browserHistory.push(`/days/${dayId}`);
   }
 
   getDisplayDate(dateString, method) {
@@ -108,6 +114,31 @@ class MemoriesIndex extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  deleteMemory(memoryId, dayId) {
+    if (confirm("Are you sure?")) {
+      fetch(`/api/v1/days/${dayId}/memories/${memoryId}`, {
+        method: 'delete'
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}, (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.getMemories();
+        this.setState({
+          editingMemoryId: ""
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+  }
+
   render() {
     let memoriesInfo = this.state.memoriesInfo.map(day => {
       let memories = day[1].map(memory => {
@@ -120,6 +151,7 @@ class MemoriesIndex extends Component {
             dayId={memory.day_id}
             openMemoryEditForm={this.openMemoryEditForm}
             updateMemory={this.updateMemory}
+            deleteMemory={this.deleteMemory}
             editing="true"
             />
           );
@@ -132,6 +164,7 @@ class MemoriesIndex extends Component {
             dayId={memory.day_id}
             openMemoryEditForm={this.openMemoryEditForm}
             updateMemory={this.updateMemory}
+            deleteMemory={this.deleteMemory}
             editing="false"
             />
           );
@@ -140,7 +173,7 @@ class MemoriesIndex extends Component {
       let displayDate = this.getDisplayDate(day[0].date, 'full')
       return (
         <div>
-          <h3>{displayDate}</h3>
+          <h3 className="date-group" onClick={() => this.goToDay(day[0].id)}>{displayDate}</h3>
           {memories}
         </div>
       );

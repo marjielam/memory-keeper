@@ -72,3 +72,11 @@
   width: 85%;
   margin-right: .5em;
 }
+
+.date-group {
+  padding: 0 .5em;
+}
+
+.date-group:hover {
+  text-decoration: underline;
+}
