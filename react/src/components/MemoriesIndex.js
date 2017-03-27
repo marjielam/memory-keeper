@@ -170,7 +170,7 @@ class MemoriesIndex extends Component {
           );
         }
       });
-      let displayDate = this.getDisplayDate(day[0].date, 'full')
+      let displayDate = this.getDisplayDate(day[0].date, 'full');
       return (
         <div>
           <h3 className="date-group" onClick={() => this.goToDay(day[0].id)}>{displayDate}</h3>
