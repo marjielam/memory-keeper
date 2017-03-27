@@ -7,7 +7,7 @@ const MemoryTile = props => {
     return (
       <div className="memory-tile">
         <input type="textarea" id="memory-edit" defaultValue={props.body}/>
-        <button className="update-memory" onClick={() => props.updateMemory(props.id)}>Save</button>
+        <button className="update-memory" onClick={() => props.updateMemory(props.id, props.dayId)}>Save</button>
       </div>
     );
   } else {

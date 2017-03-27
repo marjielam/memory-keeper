@@ -7,8 +7,12 @@ class MemoriesIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      memoriesInfo: []
+      memoriesInfo: [],
+      editing: false,
+      editingMemoryId: ""
     };
+    this.openMemoryEditForm = this.openMemoryEditForm.bind(this);
+    this.updateMemory = this.updateMemory.bind(this);
   }
 
   componentDidMount() {
@@ -64,17 +68,74 @@ class MemoriesIndex extends Component {
     return displayDate;
   }
 
+  toggleEditing() {
+    let newState = !this.state.editing;
+    this.setState({ editing: newState });
+  }
+
+  openMemoryEditForm(id) {
+    this.setState({ editingMemoryId: id });
+  }
+
+  updateMemory(memoryId, dayId) {
+    let newBody = document.getElementById('memory-edit').value;
+    let memoryData = {
+      'memory': {
+        'body': newBody
+      }
+    };
+    let jsonStringData = JSON.stringify(memoryData);
+    fetch(`/api/v1/days/${dayId}/memories/${memoryId}`, {
+      method: 'put',
+      body: jsonStringData
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status}, (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.getMemories();
+      this.setState({
+        editingMemoryId: ""
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
 
   render() {
     let memoriesInfo = this.state.memoriesInfo.map(day => {
       let memories = day[1].map(memory => {
-        return (
-          <MemoryTile
-          key={memory.id}
-          id={memory.id}
-          body={memory.body}
-          />
-        );
+        if (memory.id == this.state.editingMemoryId) {
+          return (
+            <MemoryTile
+            key={memory.id}
+            id={memory.id}
+            body={memory.body}
+            dayId={memory.day_id}
+            openMemoryEditForm={this.openMemoryEditForm}
+            updateMemory={this.updateMemory}
+            editing="true"
+            />
+          );
+        } else {
+          return (
+            <MemoryTile
+            key={memory.id}
+            id={memory.id}
+            body={memory.body}
+            dayId={memory.day_id}
+            openMemoryEditForm={this.openMemoryEditForm}
+            updateMemory={this.updateMemory}
+            editing="false"
+            />
+          );
+        }
       });
       let displayDate = this.getDisplayDate(day[0].date, 'full')
       return (
