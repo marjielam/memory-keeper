@@ -167,6 +167,7 @@ class Memories extends Component {
           key={memory.id}
           id={memory.id}
           body={memory.body}
+          dayId={this.props.dayId}
           openMemoryEditForm={this.openMemoryEditForm}
           updateMemory={this.updateMemory}
           editing="true"
@@ -178,6 +179,7 @@ class Memories extends Component {
           key={memory.id}
           id={memory.id}
           body={memory.body}
+          dayId={this.props.dayId}
           openMemoryEditForm={this.openMemoryEditForm}
           updateMemory={this.updateMemory}
           deleteMemory={this.deleteMemory}
